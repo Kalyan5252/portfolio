@@ -1,4 +1,5 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@config "./../../tailwind.config.ts";
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,70 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('/fonts/avenir/AvenirLTStd-Roman.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('/fonts/avenir/AvenirLTStd-Heavy.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: url('/fonts/avenir/AvenirLTStd-Light.otf') format('opentype');
+  font-weight: light;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Avenir', sans-serif;
+}
+
+.handwriting {
+  font-family: 'SignPainter', cursive;
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  border-right: 2px solid black; /* Simulates a cursor */
+  animation: handwriting 10s steps(20) forwards;
+}
+
+.herodispersion {
+  background: linear-gradient(
+    0deg,
+    rgb(191, 215, 234, 0.2) 90%,
+    rgba(196, 214, 232, 0) 40%
+  );
+  /* filter: blur(10px); */
+}
+.section1dispersion {
+  background: linear-gradient(
+    to bottom,
+    rgba(25, 46, 53, 0),
+    rgb(25, 46, 53) 80%
+  );
+  margin-top: -20px;
+  /* filter: blur(10px); */
+}
+
+.heromouse {
+  animation: mousescrollanim infinite 2s ease-out;
+}
+@keyframes mousescrollanim {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(400%);
+  }
 }
