@@ -1,7 +1,7 @@
 'use client';
 import React, { useRef, useEffect } from 'react';
 import { Canvas, extend, useFrame, ReactThreeFiber } from '@react-three/fiber';
-import THREE, {
+import {
   Euler,
   Mesh,
   Group,
@@ -10,6 +10,7 @@ import THREE, {
   Color,
   PointLight,
   AdditiveBlending,
+  DirectionalLight,
 } from 'three';
 import {
   useGLTF,
@@ -62,8 +63,8 @@ extend({ GlowShaderMaterial });
 declare module '@react-three/fiber' {
   interface ThreeElements {
     glowShaderMaterial: JSX.IntrinsicElements['shaderMaterial'] & {
-      color: THREE.Color;
-      glowColor: THREE.Color;
+      color: Color;
+      glowColor: Color;
       glowIntensity: number;
     };
   }
@@ -246,7 +247,7 @@ function Model() {
 
   useEffect(() => {
     scene.traverse((child) => {
-      if ((child as THREE.Mesh).isMesh) {
+      if ((child as Mesh).isMesh) {
         child.castShadow = true; // ✅ Make all meshes cast shadows
       }
     });
@@ -280,7 +281,7 @@ function Plane() {
 }
 
 function HeroScene() {
-  const lightRef = useRef<THREE.DirectionalLight>(null);
+  const lightRef = useRef<DirectionalLight>(null);
 
   useEffect(() => {
     if (lightRef.current) {
