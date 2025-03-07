@@ -9,8 +9,8 @@ const CustomCursor: React.FC = () => {
     const moveCursor = (e: MouseEvent) => {
       if (cursorRef.current) {
         gsap.to(cursorRef.current, {
-          x: e.clientX,
-          y: e.clientY,
+          x: e.clientX - 20,
+          y: e.clientY - 20,
           duration: 0.2, // Smooth follow effect
           ease: 'power2.out',
         });

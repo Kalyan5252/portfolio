@@ -21,8 +21,10 @@ const MouseScroll = () => {
     if (mouseRef.current) {
       gsap.to(mouseRef.current, {
         opacity: visible ? 1 : 0,
-        duration: 0.5,
-        delay: initial ? 8 : 2,
+        y: visible ? 0 : 20, // Moves down when hiding
+        duration: 0.6,
+        delay: initial ? 8 : 0,
+        ease: 'power2.out',
       });
     }
   }, [visible]);
@@ -30,9 +32,9 @@ const MouseScroll = () => {
   return (
     <div
       ref={mouseRef}
-      className="absolute opacity-0 bottom-10 left-1/2 z-50 h-14 w-8 border-[1px] border-white rounded-full flex justify-center p-2 transition-opacity"
+      className="absolute opacity-0 bottom-10 left-1/2 transform -translate-x-1/2 z-50 h-14 w-8 border border-white rounded-full flex justify-center items-center transition-opacity"
     >
-      <span className="absolute heromouse top-2 h-2 w-2 rounded-full bg-white transition-all animate-bounce"></span>
+      <span className="absolute heromouse top-2 h-2 w-2 rounded-full bg-white animate-bounce"></span>
     </div>
   );
 };
