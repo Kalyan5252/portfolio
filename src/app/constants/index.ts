@@ -25,7 +25,6 @@ export const SKILLS = [
       styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(64,102,141,1)] ',
       position: { top: '120%', left: '35%' },
     },
-
     {
       icon: 'node.png',
       techname: 'Node.js',

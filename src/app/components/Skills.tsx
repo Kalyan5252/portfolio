@@ -118,7 +118,7 @@ const Skills = () => {
         ref={headRef}
         className="opacity-0 text-5xl md:text-5xl font-extrabold text-white tracking-wide uppercase"
       >
-        Skills
+        Proficient in
       </h1>
 
       <div
