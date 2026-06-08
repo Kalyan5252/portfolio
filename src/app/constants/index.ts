@@ -40,7 +40,7 @@ export const SKILLS = [
     {
       icon: 'react.png',
       techname: 'React',
-      styles: 'w-14 h-10 drop-shadow-[0_0_10px_rgba(130,215,247,1)]',
+      styles: 'w-16 h-10 drop-shadow-[0_0_10px_rgba(130,215,247,1)]',
       position: { top: '60%', left: '50%' },
     },
 
@@ -82,13 +82,15 @@ export const SKILLS = [
     {
       icon: 'aws.png',
       techname: 'AWS',
-      styles: 'w-14 h-10 drop-shadow-[0_0_25px_rgba(255,255,255,1)]',
+      // styles: 'w-14 h-10 drop-shadow-[0_0_25px_rgba(255,255,255,1)]',
+      styles: 'w-16 h-10 drop-shadow-[0_0_30px_rgba(242,255,255,1)]',
       position: { top: '10%', left: '20%' },
     },
     {
       icon: 'docker.png',
       techname: 'Docker',
       styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
       position: { top: '30%', left: '50%' },
     },
     {
@@ -112,13 +114,13 @@ export const SKILLS = [
     {
       icon: 'terraform.png',
       techname: 'Terraform',
-      styles: 'w-14 h-14 drop-shadow-[0_0_10px_rgba(112,76,182,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_2px_rgba(255,255,182,1)]',
       position: { top: '20%', left: '80%' },
     },
     {
       icon: 'github.png',
       techname: 'Github',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_55px_rgba(255,255,255,1)]',
       position: { top: '10%', left: '65%' },
     },
   ],
@@ -127,31 +129,36 @@ export const SKILLS = [
     {
       icon: 'ai.png',
       techname: 'GenAi',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(110,233,232,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(50,50,233,1)]',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(110,233,232,1)]',
       position: { top: '5%', left: '47%' },
     },
     {
       icon: 'mlops.png',
       techname: 'Data Processing',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
+      styles: 'w-14 h-14',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
       position: { top: '90%', left: '40%' },
     },
     {
       icon: 'processing.png',
       techname: 'MLOps',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(180,100,100,1)]',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
       position: { top: '90%', left: '54%' },
     },
     {
       icon: 'pytorch.png',
       techname: 'Pytorch',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(221,88,58,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(255,88,58,1)]',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(221,88,58,1)]',
       position: { top: '40%', left: '35%' },
     },
     {
       icon: 'tf.png',
       techname: 'TensorFlow',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(242,164,58,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(242,164,58,1)]',
+      // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(242,164,58,1)]',
       position: { top: '40%', left: '60%' },
     },
   ],

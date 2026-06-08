@@ -17,6 +17,15 @@ export default {
       backgroundImage: {
         'gradient-to-b': 'linear-gradient(to bottom, var(--tw-gradient-stops))',
       },
+      keyframes: {
+        shine: {
+          '0%': { transform: 'translateX(-120%)' },
+          '100%': { transform: 'translateX(120%)' },
+        },
+      },
+      animation: {
+        shine: 'shine 3.5s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
