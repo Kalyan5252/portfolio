@@ -32,14 +32,43 @@ const Skills = () => {
     });
     setIsStart(false);
 
-    gsap.to('.skillbtn', {
-      scale: (i: number) => (i === activeIndex ? 1.2 : 0.8),
-      opacity: (i: number) => (i === activeIndex ? 1 : 0.5),
-      zIndex: (i: number) => (i === activeIndex ? 10 : 5),
-      duration: 0.8,
-      ease: 'power4.out',
-      overwrite: true,
-    });
+    // gsap.to('.skillbtn', {
+    //   scale: (i: number) => (i === activeIndex ? 1.2 : 0.8),
+    //   opacity: (i: number) => (i === activeIndex ? 1 : 0.5),
+    //   zIndex: (i: number) => (i === activeIndex ? 10 : 5),
+    //   duration: 0.8,
+    //   ease: 'bounce',
+    //   overwrite: true,
+    // });
+
+    (gsap.utils.toArray('.skillbtn') as HTMLButtonElement[]).forEach(
+      (btn, i) => {
+        const isActive = i === activeIndex;
+        const isLeft = i < activeIndex;
+        const isRight = i > activeIndex;
+
+        gsap.to(btn, {
+          scale: isActive ? 1.2 : 0.8,
+          opacity: isActive ? 1 : 0.5,
+          zIndex: isActive ? 10 : 5,
+          rotateY: isActive
+            ? 0
+            : isLeft
+            ? (activeIndex - i) * 45
+            : -45 * (i - activeIndex),
+          rotateX: isActive ? 0 : isLeft ? -10 : 10,
+          translateZ: isActive ? 0 : -100,
+          transformOrigin: isActive
+            ? 'center center'
+            : isLeft
+            ? 'top left'
+            : 'top right', // Or bottom left/right as needed
+          duration: 0.8,
+          ease: 'power3.out',
+          overwrite: true,
+        });
+      }
+    );
   }, [activeIndex]);
 
   const handleScroll = (direction: 'left' | 'right') => {
@@ -95,7 +124,7 @@ const Skills = () => {
               opacity: 1,
               scale: 1,
               duration: 1.5,
-              ease: 'power3.out',
+              ease: 'sine.inOut',
             }
           );
         }
@@ -112,7 +141,7 @@ const Skills = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative z-0 h-screen w-full flex flex-col items-center gap-8 pt-20"
+      className="relative z-0 h-screen w-full flex flex-col items-center gap-8 pt-20 skillssection"
     >
       <h1
         ref={headRef}
@@ -134,6 +163,10 @@ const Skills = () => {
 
         <div
           ref={skilldivRef}
+          style={{
+            perspective: '1000px',
+            transformStyle: 'preserve-3d',
+          }}
           className="flex gap-4 text-2xl items-center w-max transition-transform"
         >
           {skills.map((skill, index) => (
@@ -160,7 +193,11 @@ const Skills = () => {
         <img src="/icons/js.png" alt="" className="skillsIcons" />
       </div> */}
       <Skillblocks activeIndex={activeIndex} />
-      <div className="absolute inset-0 -mt-10 bg-gradient-to-tr from-primary to-tritary blur-lg -z-10"></div>
+      {/* <div className="absolute inset-0 -mt-10 bg-gradient-to-tr from-primary to-tritary blur-lg -z-10"></div> */}
+      <div className="absolute inset-0 -mt-10 bg-gradient-to-br from-[#192e35] to-[#04080a] blur-lg -z-10"></div>
+
+      {/* <div className="absolute bottom-15 h-5 w-full bg-try blur-3xl opacity-70"></div>
+      <div className="absolute bottom-0 h-10 w-full herodispersion blur-3xl"></div> */}
     </div>
   );
 };

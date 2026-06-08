@@ -10,7 +10,7 @@ const Hero = () => {
       <Intro />
       <HeroScene />
       <MouseScroll />
-      <div className="absolute bottom-15 h-5 w-full bg-try blur-3xl opacity-70"></div>
+      {/* <div className="absolute bottom-15 h-5 w-full bg-try blur-3xl opacity-70"></div> */}
       <div className="absolute bottom-0 h-10 w-full herodispersion blur-3xl"></div>
     </div>
   );
