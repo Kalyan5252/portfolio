@@ -212,3 +212,110 @@ body {
     background-position: calc(100% + 260px) 0;
   }
 }
+
+.project-stage-atmosphere {
+  background:
+    radial-gradient(
+      circle at 18% 24%,
+      rgba(242, 255, 249, 0.12) 0%,
+      rgba(208, 255, 228, 0.08) 16%,
+      rgba(0, 0, 0, 0) 40%
+    ),
+    radial-gradient(
+      circle at 72% 18%,
+      rgba(235, 246, 255, 0.08) 0%,
+      rgba(194, 255, 225, 0.05) 15%,
+      rgba(0, 0, 0, 0) 36%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.025) 0%,
+      rgba(255, 255, 255, 0.005) 28%,
+      rgba(0, 0, 0, 0) 70%
+    );
+  filter: blur(8px);
+}
+
+.project-stage-glow {
+  pointer-events: none;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(245, 255, 251, 0.28) 0%,
+    rgba(221, 255, 239, 0.18) 22%,
+    rgba(190, 255, 225, 0.08) 40%,
+    rgba(0, 0, 0, 0) 72%
+  );
+  mix-blend-mode: screen;
+  filter: blur(42px);
+  opacity: 0.7;
+}
+
+.project-stage-glow-one {
+  top: 8%;
+  left: -2%;
+  width: 28rem;
+  height: 18rem;
+  animation: project-stage-drift-one 12s ease-in-out infinite alternate;
+}
+
+.project-stage-glow-two {
+  right: 4%;
+  top: 16%;
+  width: 22rem;
+  height: 14rem;
+  animation: project-stage-drift-two 15s ease-in-out infinite alternate;
+}
+
+.project-stage-glow-three {
+  left: 26%;
+  bottom: 6%;
+  width: 24rem;
+  height: 12rem;
+  animation: project-stage-drift-three 14s ease-in-out infinite alternate;
+}
+
+@keyframes project-stage-drift-one {
+  0% {
+    transform: translate3d(-2%, 0%, 0) scale(0.96);
+    opacity: 0.38;
+  }
+  50% {
+    transform: translate3d(8%, 4%, 0) scale(1.1);
+    opacity: 0.72;
+  }
+  100% {
+    transform: translate3d(18%, 10%, 0) scale(1.18);
+    opacity: 0.5;
+  }
+}
+
+@keyframes project-stage-drift-two {
+  0% {
+    transform: translate3d(0%, 0%, 0) scale(0.92);
+    opacity: 0.28;
+  }
+  45% {
+    transform: translate3d(-10%, 10%, 0) scale(1.06);
+    opacity: 0.62;
+  }
+  100% {
+    transform: translate3d(-18%, 16%, 0) scale(1.14);
+    opacity: 0.36;
+  }
+}
+
+@keyframes project-stage-drift-three {
+  0% {
+    transform: translate3d(-6%, 0%, 0) scale(0.9);
+    opacity: 0.22;
+  }
+  50% {
+    transform: translate3d(12%, -8%, 0) scale(1.08);
+    opacity: 0.58;
+  }
+  100% {
+    transform: translate3d(20%, -14%, 0) scale(1.16);
+    opacity: 0.32;
+  }
+}

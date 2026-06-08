@@ -99,9 +99,12 @@ const ProjectCards = () => {
   return (
     <div className="relative mt-6 h-[calc(100vh-13rem)] pb-28">
       <div className="grid h-full min-h-0 gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative min-h-0 overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/[0.03] px-4 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(127,216,180,0.15),transparent_30%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0))]" />
-          <div className="absolute inset-0 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:86px_86px]" />
+        <div className="relative min-h-0 overflow-hidden rounded-[2.25rem] px-4 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
+          <div className="project-stage-atmosphere absolute inset-0" />
+          <div className="project-stage-glow project-stage-glow-one absolute" />
+          <div className="project-stage-glow project-stage-glow-two absolute" />
+          <div className="project-stage-glow project-stage-glow-three absolute" />
+          <div className="absolute inset-0 opacity-25 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:86px_86px]" />
 
           <div className="relative flex h-full items-center justify-center overflow-hidden rounded-[1.9rem] border border-white/8 bg-[#081015]">
             {stageProjects
@@ -255,21 +258,8 @@ const ProjectCards = () => {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center px-4">
-        <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 rounded-full bg-[rgba(10,16,19,0.62)] px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-[28px]">
-          {/* <button
-            onClick={() => changeProject(active - 1)}
-            className="group relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.04] transition-all hover:border-white/20 hover:bg-white/[0.08]"
-            aria-label="Previous project"
-          >
-            <span className="absolute text-2xl text-white/75 transition-all duration-300 group-hover:-translate-x-8 group-hover:opacity-0">
-              ←
-            </span>
-            <span className="absolute translate-x-8 text-2xl text-white transition-all duration-300 group-hover:translate-x-0">
-              ←
-            </span>
-          </button> */}
-
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
+        <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 border-b-0 rounded-full bg-[rgba(10,16,19,0.62)] border-[1px] border-white/10 px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-[28px]">
           <div className="flex min-w-0 flex-1 items-center justify-center gap-2 sm:gap-3">
             {projects.map((item, index) => (
               <button
@@ -277,7 +267,7 @@ const ProjectCards = () => {
                 onClick={() => changeProject(index)}
                 className={`group relative h-14 w-14 shrink-0 overflow-hidden rounded-full border transition-all duration-300 ${
                   index === active
-                    ? 'scale-110 border-white/25 ring-2 ring-white/12'
+                    ? 'scale-125 -translate-y-5 border-white/25 transition-all duration-300'
                     : 'border-white/10 opacity-75 hover:opacity-100'
                 }`}
                 aria-label={item.title}
@@ -298,30 +288,6 @@ const ProjectCards = () => {
               </button>
             ))}
           </div>
-
-          {/* <div className="hidden min-w-[180px] items-center justify-center md:flex">
-            <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-center">
-              <p className="text-[10px] uppercase tracking-[0.28em] text-white/45">
-                Now Showing
-              </p>
-              <p className="mt-1 text-sm font-medium text-white/88">
-                {project.title}
-              </p>
-            </div>
-          </div> */}
-
-          {/* <button
-            onClick={() => changeProject(active + 1)}
-            className="group relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.04] transition-all hover:border-white/20 hover:bg-white/[0.08]"
-            aria-label="Next project"
-          >
-            <span className="absolute text-2xl text-white/75 transition-all duration-300 group-hover:translate-x-8 group-hover:opacity-0">
-              →
-            </span>
-            <span className="absolute -translate-x-8 text-2xl text-white transition-all duration-300 group-hover:translate-x-0">
-              →
-            </span>
-          </button> */}
         </div>
       </div>
     </div>
