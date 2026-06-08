@@ -2,77 +2,99 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 type ProjectEntry = {
   title: string;
   label: string;
   image: string;
-  year: string;
   summary: string;
   narrative: string;
-  stack: string[];
+  category: string;
   outcome: string;
   accent: string;
 };
 
+const ExploreArrow = ({ className = '' }: { className?: string }) => {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M16.3891 8.11096L8.61091 15.8891"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.3891 8.11096L16.7426 12"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16.3891 8.11096L12.5 7.75741"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 const projects: ProjectEntry[] = [
   {
-    title: 'Throttle OS',
-    label: 'Automotive AI Experience',
-    image: '/images/projects/cars_8.png',
-    year: '2025',
+    title: 'Graph Investigation AI',
+    label: 'CDR IPDR Intelligence',
+    image: '/images/projects/project_1/image1.png',
     summary:
-      'A premium digital showroom that turns vehicle discovery into a cinematic browsing experience.',
+      'Graph AI platform for tracing calls, IP sessions, devices, and hidden links across complex evidence.',
     narrative:
-      'Built to feel like a launch keynote instead of a catalogue. The interface leans on depth, speed, and motion to make every vehicle feel collectible.',
-    stack: ['Next.js', 'Framer Motion', 'GSAP', 'Tailwind'],
-    outcome: 'Immersive storytelling for a product-led demo flow.',
-    accent: 'from-[#d8fff0] via-[#6ddca9] to-[#1f805f]',
+      'Built an AI investigation workspace that turns CDR/IPDR data into graph evidence, multi-hop links, and analyst-ready insights.',
+    category: 'AI & Investigation',
+    outcome: 'Faster, auditable multi-source investigation flows',
+    accent: 'from-[#d7ffe8] via-[#6ddca9] to-[#1d7b58]',
   },
   {
-    title: 'Plant Pulse',
-    label: 'Computer Vision for Crop Health',
-    image: '/images/projects/plant_health.png',
-    year: '2024',
+    title: '3D Car Configurator',
+    label: 'Showroom Preview',
+    image: '/images/projects/project_2/cars_4.png',
     summary:
-      'A diagnosis dashboard that helps growers detect stress signals before visible crop failure begins.',
+      'A polished real-time car preview tool for exploring models, finishes, textures, and lighting setups.',
     narrative:
-      'The design direction blends lab precision with calm field-friendly visuals, making model output understandable for non-technical users.',
-    stack: ['Python', 'TensorFlow', 'OpenCV', 'Streamlit'],
-    outcome: 'Bridges applied ML with accessible decision support.',
-    accent: 'from-[#efffd2] via-[#88d86c] to-[#285e2d]',
+      'Built a real-time car configurator with live model switching, paint control, pattern overlays, and showroom lighting previews.',
+    category: '3D Showcase',
+    outcome: 'Real-time customization with showroom-ready polish',
+    accent: 'from-[#efffe7] via-[#92df7d] to-[#547d2e]',
   },
   {
-    title: 'Midnight Circuit',
-    label: 'Realtime Performance Visualizer',
-    image: '/images/projects/cars_6.png',
-    year: '2026',
+    title: 'Automated Payroll',
+    label: 'Smart HR Suite',
+    image: '/images/projects/project_3/image1.png',
     summary:
-      'A telemetry-inspired dashboard for comparing speed, performance, and interaction patterns in motion.',
+      'Full-stack payroll system with attendance, leave management, salary automation, and payouts.',
     narrative:
-      'This concept explores how analytics can look emotional without losing clarity, using contrast, glow, and deliberate pacing.',
-    stack: ['React', 'TypeScript', 'Charts', 'Node.js'],
-    outcome: 'Turns raw data into a theatrical product narrative.',
-    accent: 'from-[#f4fbff] via-[#83c7ff] to-[#2350a6]',
-  },
-  {
-    title: 'Velocity Canvas',
-    label: 'Interactive Product Storytelling',
-    image: '/images/projects/cars_4.png',
-    year: '2025',
-    summary:
-      'A microsite system designed for dramatic reveals, modular storytelling, and branded motion systems.',
-    narrative:
-      'The experience uses stacked surfaces and detail panels so viewers can scan quickly or dive deep into craft and execution.',
-    stack: ['Next.js', 'Three.js', 'Motion Design', 'Vercel'],
-    outcome: 'Balances visual spectacle with portfolio clarity.',
-    accent: 'from-[#fff6de] via-[#f8bf63] to-[#9a4f18]',
+      'Built a payroll platform integrating attendance, leave tracking, salary processing, and automated payouts in one workflow.',
+    category: 'HRTech SaaS',
+    outcome: 'Reduced payroll effort and errors',
+    accent: 'from-[#efffe7] via-[#92df7d] to-[#547d2e]',
   },
 ];
 
+const AUTOPLAY_DURATION_MS = 15000;
+
 const ProjectCards = () => {
   const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const progressStartRef = useRef<number>(Date.now());
+  const animationFrameRef = useRef<number | null>(null);
 
   const project = projects[active];
 
@@ -93,20 +115,50 @@ const ProjectCards = () => {
   );
 
   const changeProject = (index: number) => {
+    progressStartRef.current = Date.now();
+    setProgress(0);
     setActive((index + projects.length) % projects.length);
   };
+
+  useEffect(() => {
+    progressStartRef.current = Date.now();
+    setProgress(0);
+
+    const tick = () => {
+      const elapsed = Date.now() - progressStartRef.current;
+      const nextProgress = Math.min(elapsed / AUTOPLAY_DURATION_MS, 1);
+
+      setProgress(nextProgress);
+
+      if (nextProgress >= 1) {
+        progressStartRef.current = Date.now();
+        setProgress(0);
+        setActive((prev) => (prev + 1) % projects.length);
+      }
+
+      animationFrameRef.current = window.requestAnimationFrame(tick);
+    };
+
+    animationFrameRef.current = window.requestAnimationFrame(tick);
+
+    return () => {
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="relative mt-6 h-[calc(100vh-13rem)] pb-28">
       <div className="grid h-full min-h-0 gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative min-h-0 overflow-hidden rounded-[2.25rem] px-4 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
+        <div className="relative min-h-0 overflow-hidden rounded-xl px-4 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
           <div className="project-stage-atmosphere absolute inset-0" />
           <div className="project-stage-glow project-stage-glow-one absolute" />
           <div className="project-stage-glow project-stage-glow-two absolute" />
           <div className="project-stage-glow project-stage-glow-three absolute" />
           <div className="absolute inset-0 opacity-25 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:86px_86px]" />
 
-          <div className="relative flex h-full items-center justify-center overflow-hidden rounded-[1.9rem] border border-white/8 bg-[#081015]">
+          <div className="relative flex h-full items-center justify-center overflow-hidden rounded-xl border border-white/8 bg-[#081015]">
             {stageProjects
               .filter((item) => item.offset !== 0 && Math.abs(item.offset) <= 2)
               .map((item) => (
@@ -117,7 +169,7 @@ const ProjectCards = () => {
                       projects.findIndex((entry) => entry.title === item.title),
                     )
                   }
-                  className="absolute top-1/2 hidden h-[78%] w-[32%] max-w-[280px] -translate-y-1/2 overflow-hidden rounded-[1.7rem] border border-white/8 bg-white/[0.02] p-3 text-left backdrop-blur-lg lg:block"
+                  className="absolute top-1/2 hidden h-[78%] w-[32%] max-w-[280px] -translate-y-1/2 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02] p-3 text-left backdrop-blur-lg lg:block"
                   animate={{
                     x: item.offset * 180,
                     rotateY: item.offset * -24,
@@ -130,7 +182,7 @@ const ProjectCards = () => {
                     transformPerspective: 1400,
                   }}
                 >
-                  <div className="relative h-full w-full overflow-hidden rounded-[1.25rem]">
+                  <div className="relative h-full w-full overflow-hidden rounded-xl">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -147,14 +199,9 @@ const ProjectCards = () => {
               initial={{ opacity: 0.6, scale: 0.97, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex h-[82%] w-full max-w-[560px] flex-col overflow-hidden rounded-[1.9rem] border border-white/10 bg-[#0b151b]/88 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+              className="relative z-10 flex h-[82%] w-full max-w-[560px] flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b151b]/88 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
             >
-              <div className="mb-3 flex items-center justify-between text-[11px] uppercase tracking-[0.32em] text-white/45">
-                <span>{project.year}</span>
-                <span>Featured Project</span>
-              </div>
-
-              <div className="relative flex-1 overflow-hidden rounded-[1.3rem]">
+              <div className="relative flex-1 overflow-hidden rounded-xl">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -165,19 +212,9 @@ const ProjectCards = () => {
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_38%,rgba(6,10,14,0.72)_100%)]" />
                 <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
                   <div>
-                    <p className="text-[11px] uppercase tracking-[0.28em] text-white/52">
-                      {project.label}
-                    </p>
                     <h3 className="mt-2 text-3xl font-bold tracking-[-0.03em] text-white lg:text-4xl">
                       {project.title}
                     </h3>
-                  </div>
-                  <div
-                    className={`hidden h-12 w-12 rounded-full bg-gradient-to-br ${project.accent} p-[1px] md:block`}
-                  >
-                    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#081015] text-sm text-white/72">
-                      {String(active + 1).padStart(2, '0')}
-                    </div>
                   </div>
                 </div>
               </div>
@@ -185,74 +222,96 @@ const ProjectCards = () => {
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-col gap-4">
-          <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-xl">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.3em] text-white/45">
+        <div className="relative min-h-0 overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(33,49,46,0.92),rgba(17,28,30,0.9))] rounded-xl">
+          <div className="absolute inset-0 opacity-[0.08] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/></filter><rect width=%22120%22 height=%22120%22 filter=%22url(%23n)%22 opacity=%220.55%22/></svg>')]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(111,156,133,0.16),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(47,89,78,0.18),transparent_38%)]" />
+          <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[length:120px_120px]" />
+
+          <div className="relative grid h-full grid-rows-[auto_1fr_auto]">
+            <div className="grid grid-cols-[3fr_1fr] border-b border-white/10">
+              <div className="px-8 py-7">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                   Project Overview
                 </p>
-                <h3 className="mt-3 text-3xl font-bold tracking-[-0.03em] text-white">
+                <h3 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-sm uppercase tracking-[0.22em] text-white/52">
+                <p className="mt-3 text-sm uppercase tracking-[0.26em] text-white/46">
                   {project.label}
                 </p>
               </div>
-              <div className="text-right">
-                <p className="text-[11px] uppercase tracking-[0.28em] text-white/45">
-                  Year
-                </p>
-                <p className="mt-2 text-lg font-semibold text-white">
-                  {project.year}
-                </p>
+              <div className="border-l border-white/10">
+                <button
+                  type="button"
+                  className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-8 py-7 text-left"
+                  aria-label={`Explore ${project.title}`}
+                >
+                  <span className="explore-project-btn-fill explore-project-btn-fill-white" />
+                  <span className="explore-project-btn-fill explore-project-btn-fill-green" />
+
+                  <span className="relative z-10 flex w-full items-center justify-center">
+                    <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
+                      <span>Explore</span>
+                      <ExploreArrow className="explore-project-btn-arrow h-[18px] w-[18px]" />
+                    </span>
+
+                    <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-dark flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-[#19362d]">
+                      <span>Explore</span>
+                      <ExploreArrow className="explore-project-btn-arrow h-[18px] w-[18px]" />
+                    </span>
+                  </span>
+                </button>
               </div>
             </div>
 
-            <p className="mt-5 text-base leading-8 text-white/72">
-              {project.summary}
-            </p>
-          </div>
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="border-r border-white/10">
+                <div className="px-8 py-5">
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
+                    Case Study
+                  </p>
+                  <p className="text-sm leading-8 text-white/70 mt-3">
+                    {project.narrative}
+                  </p>
+                </div>
+              </div>
 
-          <div className="grid gap-4 lg:grid-cols-2">
-            <div className="rounded-[1.7rem] border border-white/10 bg-white/[0.035] p-5">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/45">
-                Case Study
-              </p>
-              <p className="mt-3 text-sm leading-7 text-white/70">
-                {project.narrative}
-              </p>
+              <div>
+                <div className="grid h-full grid-rows-2">
+                  <div className="border-b border-white/10">
+                    <div className="px-8 py-5">
+                      <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
+                        Outcome
+                      </p>
+                      <p className="max-w-[20rem] text-sm leading-8 text-white/70">
+                        {project.outcome}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="px-8 py-5">
+                      <p className="text-[10px] tracking-[0.34em] text-white/36">
+                        Category
+                      </p>
+                      <div className="mt-4 inline-flex py-2 text-[14px] tracking-[0.16em] text-white/72">
+                        {project.category}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="rounded-[1.7rem] border border-white/10 bg-white/[0.035] p-5">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/45">
-                Outcome
-              </p>
-              <p className="mt-3 text-sm leading-7 text-white/70">
-                {project.outcome}
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-[1.7rem] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-5">
-            <div className="flex items-center justify-between gap-4">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-white/45">
-                Tech Stack
-              </p>
-              <p className="text-xs text-white/55">
-                {String(active + 1).padStart(2, '0')} /{' '}
-                {String(projects.length).padStart(2, '0')}
-              </p>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.16em] text-white/72"
-                >
-                  {item}
-                </span>
-              ))}
+            <div className="border-t border-white/10">
+              <div className="border-b border-white/10 px-8 py-5">
+                <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
+                  Summary
+                </p>
+                <p className="max-w-[42rem] text-[1.02rem] leading-8 text-white/72">
+                  {project.summary}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -265,26 +324,50 @@ const ProjectCards = () => {
               <button
                 key={item.title}
                 onClick={() => changeProject(index)}
-                className={`group relative h-14 w-14 shrink-0 overflow-hidden rounded-full border transition-all duration-300 ${
+                className={`group relative h-14 w-14 shrink-0 rounded-full transition-all duration-300 ${
                   index === active
-                    ? 'scale-125 -translate-y-5 border-white/25 transition-all duration-300'
-                    : 'border-white/10 opacity-75 hover:opacity-100'
+                    ? 'scale-125 -translate-y-5 transition-all duration-300'
+                    : 'opacity-75 hover:opacity-100'
                 }`}
                 aria-label={item.title}
               >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div
-                  className={`absolute inset-0 transition-all duration-300 ${
-                    index === active
-                      ? 'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.12))]'
-                      : 'bg-black/25'
+                {index === active && (
+                  <>
+                    <span
+                      className="project-nav-progress-ring pointer-events-none absolute inset-[-1px] z-20 rounded-full"
+                      style={{
+                        background: `conic-gradient(from -90deg, rgba(132,255,188,0.98) 0deg, rgba(132,255,188,0.92) ${progress * 360}deg, rgba(255,255,255,0.1) ${progress * 360}deg, rgba(255,255,255,0.06) 360deg)`,
+                      }}
+                    />
+                    {/* <span
+                      className="project-nav-progress-head blur-[1px] pointer-events-none absolute left-1/2 top-1/2 z-30"
+                      style={{
+                        transform: `translate(-50%, -40%) rotate(${progress * 360 - 90}deg) translateY(-32px)`,
+                      }}
+                    >
+                      <span className="project-nav-progress-head-core" />
+                    </span> */}
+                  </>
+                )}
+                <span
+                  className={`absolute inset-0 overflow-hidden rounded-full border transition-all duration-300 ${
+                    index === active ? 'border-white/25' : 'border-white/10'
                   }`}
-                />
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <span
+                    className={`absolute inset-0 transition-all duration-300 ${
+                      index === active
+                        ? 'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.12))]'
+                        : 'bg-black/25'
+                    }`}
+                  />
+                </span>
               </button>
             ))}
           </div>
