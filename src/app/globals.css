@@ -557,3 +557,7 @@ body {
   font-size: 1.1rem;
   letter-spacing: 0.02em;
 }
+
+.investigation-serif {
+  font-family: 'Times New Roman', Times, serif;
+}

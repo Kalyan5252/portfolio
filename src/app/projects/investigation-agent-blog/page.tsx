@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import CustomCursor from '../../components/CustomCursor';
 import { investigationProject } from '../../constants/projects';
 import InvestigationMedia from './InvestigationMedia';
 
@@ -13,7 +14,7 @@ const navLinks = [
 
 export default function InvestigationAgentBlogPage() {
   return (
-    <main className="investigation-page min-h-screen text-white">
+    <main className="investigation-page min-h-screen font-sans text-white">
       <div className="investigation-page__background pointer-events-none fixed inset-0 -z-10" />
       <div className="investigation-page__grid pointer-events-none fixed inset-0 -z-10" />
 
@@ -23,7 +24,7 @@ export default function InvestigationAgentBlogPage() {
             <div className="w-[190px]">
               <Link
                 href="/"
-                className="font-serif text-[3rem] leading-none text-white"
+                className="investigation-serif text-[3rem] leading-none text-white"
               >
                 Kalyan
               </Link>
@@ -66,7 +67,7 @@ export default function InvestigationAgentBlogPage() {
               <p className="text-[1.75rem] tracking-wide text-[#9ca0a2]">
                 Project
               </p>
-              <h1 className="mt-5 font-serif text-[5.3rem] leading-[1.04] tracking-[-0.04em] text-white">
+              <h1 className="investigation-serif mt-5 text-[5.3rem] leading-[1.04] tracking-[-0.04em] text-white">
                 {investigationProject.title}
               </h1>
             </div>
@@ -76,13 +77,13 @@ export default function InvestigationAgentBlogPage() {
         <section className="border-b border-white/8 w-full flex justify-center">
           <div className="min-w-6xl max-w-7xl grid grid-cols-[1fr_565px] items-center gap-16 px-8 py-16 border-x border-white/8">
             <div className="max-w-[440px]">
-              <p className="text-[1.75rem] tracking-wide text-[#9ca0a2]">
+              <p className="text-[1.75rem] tracking-wide text-[#565656]">
                 Introduction
               </p>
-              <h2 className="mt-5 font-serif text-[4rem] leading-[1.06] tracking-[-0.04em] text-white">
+              <h2 className="investigation-serif mt-5 text-[3.9rem] leading-[1.06] tracking-[-0.04em] text-white">
                 Data Intelligence
               </h2>
-              <p className="mt-6 text-[1.5rem] leading-[1.65] tracking-[0.01em] text-[#858b8d]">
+              <p className="mt-6 text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
                 {investigationProject.introduction}
               </p>
             </div>
@@ -115,13 +116,13 @@ export default function InvestigationAgentBlogPage() {
 
         <section className="border-b border-white/8 w-full flex justify-center">
           <div className="min-w-6xl max-w-6xl px-12 py-16 border-x border-white/8">
-            <p className="text-[1.75rem] tracking-wide text-[#9ca0a2]">
+            <p className="text-[1.75rem] tracking-wide text-[#565656]">
               Case Study
             </p>
-            <h2 className="mt-4 font-serif text-[4rem] leading-[1.06] tracking-[-0.04em] text-white">
+            <h2 className="investigation-serif mt-4 text-[4rem] leading-[1.06] tracking-[-0.04em] text-white">
               Investigation Overhead
             </h2>
-            <p className="mt-8 max-w-[983px] text-justify text-[1.5rem] leading-[1.6] tracking-[0.01em] text-[#858b8d]">
+            <p className="mt-8 max-w-[983px] text-justify text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
               {investigationProject.caseStudy}
             </p>
           </div>
@@ -137,10 +138,20 @@ export default function InvestigationAgentBlogPage() {
 
         <section className="border-b border-white/8 w-full flex justify-center">
           <div className="min-w-6xl max-w-6xl px-12 py-16 border-x border-white/8">
-            <div className="max-w-[900px]">
-              <div className="investigation-pill">{`${investigationProject.solutionBlocks[0].id} ${investigationProject.solutionBlocks[0].title}`}</div>
-              <div className="mt-10 whitespace-pre-line text-[1.5rem] leading-[1.55] tracking-[0.01em] text-[#858b8d]">
-                {investigationProject.solutionBlocks[0].body}
+            <div className="mt-14 grid grid-cols-[1fr_1fr] justify-between gap-16">
+              <div className="max-w-[1000px]">
+                <div className="investigation-pill">{`${investigationProject.solutionBlocks[0].id} ${investigationProject.solutionBlocks[0].title}`}</div>
+                <div className="mt-10 whitespace-pre-line text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
+                  {investigationProject.solutionBlocks[0].body}
+                </div>
+              </div>
+              <div className="relative h-[383px] overflow-hidden rounded-xl outline outline-[10px] outline-white/25">
+                <Image
+                  src={investigationProject.architectureImage}
+                  alt="Graph investigation system view"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
 
@@ -156,7 +167,7 @@ export default function InvestigationAgentBlogPage() {
 
               <div className="pt-2">
                 <div className="investigation-pill ml-auto w-fit">{`${investigationProject.solutionBlocks[1].id} ${investigationProject.solutionBlocks[1].title}`}</div>
-                <p className="mt-10 max-w-[455px] text-[1.5rem] leading-[1.55] tracking-[0.01em] text-[#858b8d]">
+                <p className="mt-10 max-w-[550px] text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
                   {investigationProject.solutionBlocks[1].body}
                 </p>
               </div>
@@ -164,16 +175,23 @@ export default function InvestigationAgentBlogPage() {
 
             <div className="mt-14 max-w-[900px]">
               <div className="investigation-pill">{`${investigationProject.solutionBlocks[2].id} ${investigationProject.solutionBlocks[2].title}`}</div>
-              <p className="mt-10 max-w-[883px] text-[1.5rem] leading-[1.55] tracking-[0.01em] text-[#858b8d]">
+              <p className="mt-10 max-w-[883px] text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
                 {investigationProject.solutionBlocks[2].body}
               </p>
             </div>
 
-            <div className="mt-10 grid grid-cols-[1fr_473px] gap-16">
-              <div />
+            <div className="mt-10 grid grid-cols-[1fr_1fr] gap-16">
+              <div className="relative h-[383px] overflow-hidden rounded-xl outline outline-[10px] outline-white/25">
+                <Image
+                  src={investigationProject.graphImage}
+                  alt="Graph investigation system view"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <div>
                 <div className="investigation-pill w-fit">{`${investigationProject.solutionBlocks[3].id} ${investigationProject.solutionBlocks[3].title}`}</div>
-                <p className="mt-10 text-[1.5rem] leading-[1.55] tracking-[0.01em] text-[#858b8d]">
+                <p className="mt-10 text-[1.2rem] leading-[1.7] tracking-[0.01em] text-[#858b8d]">
                   {investigationProject.solutionBlocks[3].body}
                 </p>
               </div>
@@ -181,6 +199,7 @@ export default function InvestigationAgentBlogPage() {
           </div>
         </section>
       </section>
+      <CustomCursor />
     </main>
   );
 }
