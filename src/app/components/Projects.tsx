@@ -44,6 +44,7 @@ const Projects = () => {
 
   return (
     <section
+      id="projects"
       ref={sectionRef}
       className="relative isolate h-screen overflow-hidden px-6 py-8 text-white md:px-10 lg:px-14"
     >

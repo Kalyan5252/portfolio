@@ -11,7 +11,6 @@ export default function Home() {
       {/* <Skills /> */}
       {/* <Empty /> */}
       <Projects />
-      <CustomCursor />
     </main>
   );
 }

@@ -2,91 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useMemo, useRef, useState } from 'react';
-
-type ProjectEntry = {
-  title: string;
-  label: string;
-  image: string;
-  summary: string;
-  narrative: string;
-  category: string;
-  outcome: string;
-  accent: string;
-};
-
-const ExploreArrow = ({ className = '' }: { className?: string }) => {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className={className}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M16.3891 8.11096L8.61091 15.8891"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.3891 8.11096L16.7426 12"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M16.3891 8.11096L12.5 7.75741"
-        stroke="currentColor"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-};
-
-const projects: ProjectEntry[] = [
-  {
-    title: 'Graph Investigation AI',
-    label: 'CDR IPDR Intelligence',
-    image: '/images/projects/project_1/image1.png',
-    summary:
-      'Graph AI platform for tracing calls, IP sessions, devices, and hidden links across complex evidence.',
-    narrative:
-      'Built an AI investigation workspace that turns CDR/IPDR data into graph evidence, multi-hop links, and analyst-ready insights.',
-    category: 'AI & Investigation',
-    outcome: 'Faster, auditable multi-source investigation flows',
-    accent: 'from-[#d7ffe8] via-[#6ddca9] to-[#1d7b58]',
-  },
-  {
-    title: '3D Car Configurator',
-    label: 'Showroom Preview',
-    image: '/images/projects/project_2/cars_4.png',
-    summary:
-      'A polished real-time car preview tool for exploring models, finishes, textures, and lighting setups.',
-    narrative:
-      'Built a real-time car configurator with live model switching, paint control, pattern overlays, and showroom lighting previews.',
-    category: '3D Showcase',
-    outcome: 'Real-time customization with showroom-ready polish',
-    accent: 'from-[#efffe7] via-[#92df7d] to-[#547d2e]',
-  },
-  {
-    title: 'Automated Payroll',
-    label: 'Smart HR Suite',
-    image: '/images/projects/project_3/image1.png',
-    summary:
-      'Full-stack payroll system with attendance, leave management, salary automation, and payouts.',
-    narrative:
-      'Built a payroll platform integrating attendance, leave tracking, salary processing, and automated payouts in one workflow.',
-    category: 'HRTech SaaS',
-    outcome: 'Reduced payroll effort and errors',
-    accent: 'from-[#efffe7] via-[#92df7d] to-[#547d2e]',
-  },
-];
+import { showcaseProjects } from '../constants/projects';
 
 const AUTOPLAY_DURATION_MS = 15000;
 
@@ -96,20 +14,23 @@ const ProjectCards = () => {
   const progressStartRef = useRef<number>(Date.now());
   const animationFrameRef = useRef<number | null>(null);
 
-  const project = projects[active];
+  const project = showcaseProjects[active];
 
   const stageProjects = useMemo(
     () =>
-      projects.map((item, index) => ({
+      showcaseProjects.map((item, index) => ({
         ...item,
         offset:
           index === active
             ? 0
-            : (index - active + projects.length) % projects.length >
-                projects.length / 2
-              ? ((index - active + projects.length) % projects.length) -
-                projects.length
-              : (index - active + projects.length) % projects.length,
+            : (index - active + showcaseProjects.length) %
+                  showcaseProjects.length >
+                showcaseProjects.length / 2
+              ? ((index - active + showcaseProjects.length) %
+                  showcaseProjects.length) -
+                showcaseProjects.length
+              : (index - active + showcaseProjects.length) %
+                showcaseProjects.length,
       })),
     [active],
   );
@@ -117,7 +38,7 @@ const ProjectCards = () => {
   const changeProject = (index: number) => {
     progressStartRef.current = Date.now();
     setProgress(0);
-    setActive((index + projects.length) % projects.length);
+    setActive((index + showcaseProjects.length) % showcaseProjects.length);
   };
 
   useEffect(() => {
@@ -133,7 +54,7 @@ const ProjectCards = () => {
       if (nextProgress >= 1) {
         progressStartRef.current = Date.now();
         setProgress(0);
-        setActive((prev) => (prev + 1) % projects.length);
+        setActive((prev) => (prev + 1) % showcaseProjects.length);
       }
 
       animationFrameRef.current = window.requestAnimationFrame(tick);
@@ -166,7 +87,9 @@ const ProjectCards = () => {
                   key={item.title}
                   onClick={() =>
                     changeProject(
-                      projects.findIndex((entry) => entry.title === item.title),
+                      showcaseProjects.findIndex(
+                        (entry) => entry.title === item.title,
+                      ),
                     )
                   }
                   className="absolute top-1/2 hidden h-[78%] w-[32%] max-w-[280px] -translate-y-1/2 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02] p-3 text-left backdrop-blur-lg lg:block"
@@ -241,26 +164,59 @@ const ProjectCards = () => {
                 </p>
               </div>
               <div className="border-l border-white/10">
-                <button
-                  type="button"
-                  className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-8 py-7 text-left"
-                  aria-label={`Explore ${project.title}`}
-                >
-                  <span className="explore-project-btn-fill explore-project-btn-fill-white" />
-                  <span className="explore-project-btn-fill explore-project-btn-fill-green" />
+                {project.href && !project.disabled ? (
+                  <Link
+                    href={project.href}
+                    className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-8 py-7 text-left"
+                    aria-label={`Explore ${project.title}`}
+                  >
+                    <span className="explore-project-btn-fill explore-project-btn-fill-white" />
+                    <span className="explore-project-btn-fill explore-project-btn-fill-green" />
 
-                  <span className="relative z-10 flex w-full items-center justify-center">
-                    <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
-                      <span>Explore</span>
-                      <ExploreArrow className="explore-project-btn-arrow h-[18px] w-[18px]" />
-                    </span>
+                    <span className="relative z-10 flex w-full items-center justify-center">
+                      <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
+                        <span>Explore</span>
+                        <Image
+                          src="/icons/Arrow Up Right Icon.svg"
+                          alt=""
+                          aria-hidden="true"
+                          width={18}
+                          height={18}
+                          className="explore-project-btn-arrow h-[18px] w-[18px] invert"
+                        />
+                      </span>
 
-                    <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-dark flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-[#19362d]">
-                      <span>Explore</span>
-                      <ExploreArrow className="explore-project-btn-arrow h-[18px] w-[18px]" />
+                      <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-dark flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
+                        <span>Explore</span>
+                        <Image
+                          src="/icons/Arrow Up Right Icon.svg"
+                          alt=""
+                          aria-hidden="true"
+                          width={18}
+                          height={18}
+                          className="explore-project-btn-arrow h-[18px] w-[18px] brightness-0 invert"
+                        />
+                      </span>
                     </span>
-                  </span>
-                </button>
+                  </Link>
+                ) : (
+                  <div
+                    aria-disabled="true"
+                    className="explore-project-btn-disabled relative flex h-full w-full items-center justify-center px-8 py-7 text-center"
+                  >
+                    <span className="flex items-center gap-2 text-[1.1rem] font-semibold tracking-[-0.03em] text-white/42">
+                      <span>Explore</span>
+                      <Image
+                        src="/icons/Arrow Up Right Icon.svg"
+                        alt=""
+                        aria-hidden="true"
+                        width={18}
+                        height={18}
+                        className="h-[18px] w-[18px] opacity-40 invert"
+                      />
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -320,7 +276,7 @@ const ProjectCards = () => {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
         <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 border-b-0 rounded-full bg-[rgba(10,16,19,0.62)] border-[1px] border-white/10 px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-[28px]">
           <div className="flex min-w-0 flex-1 items-center justify-center gap-2 sm:gap-3">
-            {projects.map((item, index) => (
+            {showcaseProjects.map((item, index) => (
               <button
                 key={item.title}
                 onClick={() => changeProject(index)}
