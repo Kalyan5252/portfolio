@@ -46,6 +46,7 @@ export const investigationProject = {
   introImage: '/images/projects/project_1/image1.png',
   graphImage: '/images/projects/project_1/image2.png',
   architectureImage: '/images/projects/project_1/image4.png',
+  neo4jImage: '/images/projects/project_1/image5.png',
   tableImage: '/images/projects/project_1/image3.png',
   video: '/videos/project1_graph.mov',
   summary:
