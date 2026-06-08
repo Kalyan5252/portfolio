@@ -96,6 +96,7 @@ export default function InvestigationAgentBlogPage() {
                   src={investigationProject.introImage}
                   alt={investigationProject.title}
                   fill
+                  sizes="(max-width: 1023px) 88vw, 493px"
                   className="object-cover"
                 />
               </div>
