@@ -7,7 +7,7 @@ import Empty from './components/Empty';
 export default function Home() {
   return (
     <main className="text-white">
-      {/* <Hero /> */}
+      <Hero />
       <Skills />
       {/* <Empty /> */}
       {/* <Projects /> */}
