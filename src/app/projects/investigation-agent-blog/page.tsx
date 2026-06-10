@@ -3,16 +3,10 @@ import Link from 'next/link';
 import CustomCursor from '../../components/CustomCursor';
 import { investigationProject } from '../../constants/projects';
 import InvestigationMedia from './InvestigationMedia';
+import { ComparisonTable } from './ComparisonTable';
 import { LiveContextSection } from '@/app/live-context/LiveContextSection';
-import { cards } from '@/app/constants/livecontext_dummy';
-
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Skills', href: '/#projects' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Works', href: '/#projects' },
-  { label: 'Contact', href: '/#projects' },
-];
+import { cards, comparisionRows } from '@/app/constants/livecontext_dummy';
+import Header from '@/app/components/Header';
 
 export default function InvestigationAgentBlogPage() {
   return (
@@ -21,39 +15,7 @@ export default function InvestigationAgentBlogPage() {
       <div className="investigation-page__grid pointer-events-none fixed inset-0 -z-10" />
 
       <section className="investigation-shell relative mx-auto flex w-full flex-col items-center pt-6 sm:pt-8">
-        <header className="flex w-full justify-center border-b border-t border-white/8 py-4">
-          <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 px-5 sm:px-6 md:px-8 lg:h-10 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-            <div className="w-full lg:w-[190px]">
-              <Link
-                href="/"
-                className="investigation-serif text-[2.2rem] leading-none text-white sm:text-[2.6rem] lg:text-[3rem]"
-              >
-                Kalyan
-              </Link>
-            </div>
-
-            <nav className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[0.95rem] text-white/80 sm:text-[1rem] lg:gap-14 lg:text-[1.05rem]">
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 lg:gap-14">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.label}
-                    href={link.href}
-                    className="transition hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-
-            <Link
-              href="/#projects"
-              className="w-fit rounded-xl bg-[#e8e8e8] px-4 py-2.5 text-[0.95rem] font-bold text-[#3e595c] shadow-[0_12px_24px_rgba(0,0,0,0.14)] transition hover:-translate-y-0.5 sm:px-5 sm:py-3 sm:text-[1.05rem]"
-            >
-              Get Resume
-            </Link>
-          </div>
-        </header>
+        <Header />
 
         <section className="flex w-full justify-center border-b border-white/8">
           <div className="w-full max-w-[1280px] border-x border-white/8 px-5 py-4 sm:px-6 md:px-8 lg:px-10">
@@ -212,13 +174,23 @@ export default function InvestigationAgentBlogPage() {
           </div>
         </section>
       </section>
-      <section>
+      {/* <section>
         <LiveContextSection
           eyebrow="Live Context"
           title="Knows your assets"
           description="Works where your team already works. Every chat, every scheduled run starts from the same shared context, your data, your brand, your stack."
           cards={cards}
         />
+      </section> */}
+
+      <section className="flex w-full justify-center border-b border-white/8">
+        <div className="w-full max-w-[1280px] border-x border-white/8 px-5 py-4 sm:px-6 md:px-8 lg:px-12 lg:py-2">
+          <ComparisonTable
+            leftHeader="Legacy Map"
+            rightHeader="Conversion"
+            rows={comparisionRows}
+          />
+        </div>
       </section>
       <CustomCursor />
     </main>
