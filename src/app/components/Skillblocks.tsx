@@ -31,7 +31,7 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
           duration: 1,
           delay,
           ease: 'power4.out',
-        }
+        },
       );
     });
   }, [currentSkills]); // Runs when currentSkills update
@@ -99,7 +99,7 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
         {exitingSkills.map((skill, index) => (
           <div
             key={`exit-${index}`}
-            className={`${divLayouts[activeIndex].div2} p-4 group bg-primary rounded-lg shadow-lg flex flex-col items-center justify-center text-white
+            className={`${divLayouts[activeIndex].div2} p-4 group bg-tritary/50 border-[1px] border-gray-400/30 rounded-lg shadow-lg flex flex-col items-center justify-center text-white
                    transition-all duration-300 overflow-hidden min-h-24 min-w-24`}
             style={{ top: skill.position.top, left: skill.position.left }}
           >
@@ -125,7 +125,7 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
         {currentSkills.map((skill, index) => (
           <div
             key={`new-${index}`}
-            className={`${divLayouts[activeIndex].div2} p-4 group bg-primary rounded-lg shadow-lg flex flex-col items-center justify-center text-white
+            className={`${divLayouts[activeIndex].div2} p-4 group bg-tritary/50 border-[1px] border-gray-400/30 rounded-lg shadow-lg flex flex-col items-center justify-center text-white
                    transition-all duration-300 overflow-hidden min-h-24 min-w-24`}
             style={{ top: skill.position.top, left: skill.position.left }}
           >

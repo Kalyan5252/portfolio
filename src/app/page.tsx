@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <main className="text-white">
       {/* <Hero /> */}
-      {/* <Skills /> */}
+      <Skills />
       {/* <Empty /> */}
-      <Projects />
+      {/* <Projects /> */}
     </main>
   );
 }

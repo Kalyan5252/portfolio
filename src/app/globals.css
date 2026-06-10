@@ -97,10 +97,10 @@ body {
 }
 
 .skillbtn {
-  opacity: 0.4;
+  opacity: 0.2;
   cursor: none;
   outline: none;
-  filter: blur(2px);
+  filter: blur(1px);
 }
 
 .activeskillbtn {
@@ -512,7 +512,7 @@ body {
 
 /* .investigation-shell::before,
 .investigation-shell::after {
-  content: '';
+  content: '';f
   position: absolute;
   top: 0;
   bottom: 0;
