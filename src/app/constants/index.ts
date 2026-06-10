@@ -90,7 +90,8 @@ export const SKILLS = [
     {
       icon: 'docker.png',
       techname: 'Docker',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
+      styles:
+        'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)] group-hover:-translate-y-1',
       // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
       position: { top: '30%', left: '50%' },
     },

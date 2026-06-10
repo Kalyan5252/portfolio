@@ -9,7 +9,7 @@ const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const skilldivRef = useRef<HTMLDivElement>(null);
   const skillsSectionRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
   const [isStart, setIsStart] = useState(true);
 
   useEffect(() => {
