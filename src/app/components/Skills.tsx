@@ -9,7 +9,7 @@ const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const skilldivRef = useRef<HTMLDivElement>(null);
   const skillsSectionRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [isStart, setIsStart] = useState(true);
 
   useEffect(() => {
@@ -121,7 +121,7 @@ const Skills = () => {
   return (
     <div
       ref={sectionRef}
-      className="relative z-0 h-screen w-full flex flex-col items-center gap-8 pt-20 skillssection"
+      className="relative z-0 min-h-screen w-full flex flex-col items-center gap-8 pt-20 skillssection"
     >
       <h1
         ref={headRef}

@@ -21,7 +21,7 @@ const AnimatedText = () => {
     if (screenWidth < 1024) {
       xValue = 0;
     } else {
-      xValue = -220;
+      xValue = -215;
     }
 
     if (heyChars && imChars) {
@@ -139,7 +139,7 @@ const AnimatedText = () => {
       ></div>
 
       <div ref={imRef} className="relative flex space-x-1 mt-2">
-        {"i'm".split('').map((char, index) => (
+        {"I'm".split('').map((char, index) => (
           <span key={index} className="char opacity-0 inline-block">
             {char}
           </span>

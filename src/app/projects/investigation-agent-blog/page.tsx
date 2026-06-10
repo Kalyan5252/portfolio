@@ -3,6 +3,8 @@ import Link from 'next/link';
 import CustomCursor from '../../components/CustomCursor';
 import { investigationProject } from '../../constants/projects';
 import InvestigationMedia from './InvestigationMedia';
+import { LiveContextSection } from '@/app/live-context/LiveContextSection';
+import { cards } from '@/app/constants/livecontext_dummy';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -18,7 +20,7 @@ export default function InvestigationAgentBlogPage() {
       <div className="investigation-page__background pointer-events-none fixed inset-0 -z-10" />
       <div className="investigation-page__grid pointer-events-none fixed inset-0 -z-10" />
 
-      <section className="investigation-shell relative mx-auto flex w-full flex-col items-center pb-20 pt-6 sm:pb-24 sm:pt-8">
+      <section className="investigation-shell relative mx-auto flex w-full flex-col items-center pt-6 sm:pt-8">
         <header className="flex w-full justify-center border-b border-t border-white/8 py-4">
           <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-5 px-5 sm:px-6 md:px-8 lg:h-10 lg:flex-row lg:items-center lg:justify-between lg:px-10">
             <div className="w-full lg:w-[190px]">
@@ -209,6 +211,14 @@ export default function InvestigationAgentBlogPage() {
             </div>
           </div>
         </section>
+      </section>
+      <section>
+        <LiveContextSection
+          eyebrow="Live Context"
+          title="Knows your assets"
+          description="Works where your team already works. Every chat, every scheduled run starts from the same shared context, your data, your brand, your stack."
+          cards={cards}
+        />
       </section>
       <CustomCursor />
     </main>

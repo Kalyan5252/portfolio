@@ -9,8 +9,8 @@ export default function Home() {
     <main className="text-white">
       <Hero />
       <Skills />
+      <Projects />
       {/* <Empty /> */}
-      {/* <Projects /> */}
     </main>
   );
 }

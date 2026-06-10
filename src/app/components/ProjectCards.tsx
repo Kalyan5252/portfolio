@@ -3,10 +3,68 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { CSSProperties } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { showcaseProjects } from '../constants/projects';
 
 const AUTOPLAY_DURATION_MS = 15000;
+
+const MERCURY_NAV_PALETTES = [
+  {
+    base: '#12264d',
+    mid: '#7fc8ff',
+    light: '#f5d6c8',
+    dark: '#050a25',
+    accent: 'rgba(126,203,255,0.96)',
+    ring: 'rgba(126,203,255,0.96)',
+    mark: 'rgba(8,16,34,0.88)',
+  },
+  {
+    base: '#dff5ff',
+    mid: '#f7ffff',
+    light: '#ffffff',
+    dark: '#263146',
+    accent: 'rgba(214,246,255,0.98)',
+    ring: 'rgba(214,246,255,0.94)',
+    mark: 'rgba(22,31,42,0.86)',
+  },
+  {
+    base: '#162a1b',
+    mid: '#8ce45f',
+    light: '#c8ff9e',
+    dark: '#07110a',
+    accent: 'rgba(142,228,95,0.96)',
+    ring: 'rgba(142,228,95,0.94)',
+    mark: 'rgba(8,20,10,0.86)',
+  },
+  {
+    base: '#6c321c',
+    mid: '#ff9b4d',
+    light: '#ffd47b',
+    dark: '#140908',
+    accent: 'rgba(255,155,77,0.96)',
+    ring: 'rgba(255,170,84,0.94)',
+    mark: 'rgba(24,10,6,0.86)',
+  },
+  {
+    base: '#35155c',
+    mid: '#df4ee5',
+    light: '#ff91f4',
+    dark: '#080414',
+    accent: 'rgba(223,78,229,0.96)',
+    ring: 'rgba(236,92,232,0.94)',
+    mark: 'rgba(18,6,26,0.86)',
+  },
+] as const;
+
+const getProjectMark = (title: string) =>
+  title
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
 
 const ProjectCards = () => {
   const [active, setActive] = useState(0);
@@ -276,26 +334,30 @@ const ProjectCards = () => {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
         <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 border-b-0 rounded-full bg-[rgba(10,16,19,0.62)] border-[1px] border-white/10 px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-[28px]">
           <div className="flex min-w-0 flex-1 items-center justify-center gap-2 sm:gap-3">
-            {showcaseProjects.map((item, index) => (
-              <button
-                key={item.title}
-                onClick={() => changeProject(index)}
-                className={`group relative h-14 w-14 shrink-0 rounded-full transition-all duration-300 ${
-                  index === active
-                    ? 'scale-125 -translate-y-5 transition-all duration-300'
-                    : 'opacity-75 hover:opacity-100'
-                }`}
-                aria-label={item.title}
-              >
-                {index === active && (
-                  <>
-                    <span
-                      className="project-nav-progress-ring pointer-events-none absolute inset-[-1px] z-20 rounded-full"
-                      style={{
-                        background: `conic-gradient(from -90deg, rgba(132,255,188,0.98) 0deg, rgba(132,255,188,0.92) ${progress * 360}deg, rgba(255,255,255,0.1) ${progress * 360}deg, rgba(255,255,255,0.06) 360deg)`,
-                      }}
-                    />
-                    {/* <span
+            {showcaseProjects.map((item, index) => {
+              const palette =
+                MERCURY_NAV_PALETTES[index % MERCURY_NAV_PALETTES.length];
+
+              return (
+                <button
+                  key={item.title}
+                  onClick={() => changeProject(index)}
+                  className={`group relative h-14 w-14 shrink-0 rounded-full transition-all duration-300 ${
+                    index === active
+                      ? 'scale-125 -translate-y-5 transition-all duration-300'
+                      : 'opacity-75 hover:opacity-100'
+                  }`}
+                  aria-label={item.title}
+                >
+                  {index === active && (
+                    <>
+                      <span
+                        className="project-nav-progress-ring pointer-events-none absolute inset-[-1px] z-20 rounded-full"
+                        style={{
+                          background: `conic-gradient(from -90deg, ${palette.ring} 0deg, ${palette.ring} ${progress * 360}deg, rgba(255,255,255,0.1) ${progress * 360}deg, rgba(255,255,255,0.06) 360deg)`,
+                        }}
+                      />
+                      {/* <span
                       className="project-nav-progress-head blur-[1px] pointer-events-none absolute left-1/2 top-1/2 z-30"
                       style={{
                         transform: `translate(-50%, -40%) rotate(${progress * 360 - 90}deg) translateY(-32px)`,
@@ -303,29 +365,44 @@ const ProjectCards = () => {
                     >
                       <span className="project-nav-progress-head-core" />
                     </span> */}
-                  </>
-                )}
-                <span
-                  className={`absolute inset-0 overflow-hidden rounded-full border transition-all duration-300 ${
-                    index === active ? 'border-white/25' : 'border-white/10'
-                  }`}
-                >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                    </>
+                  )}
                   <span
-                    className={`absolute inset-0 transition-all duration-300 ${
+                    className={`project-nav-mercury absolute inset-0 overflow-hidden rounded-full border transition-all duration-300 ${
                       index === active
-                        ? 'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(0,0,0,0.12))]'
-                        : 'bg-black/25'
+                        ? 'project-nav-mercury-active border-white/25'
+                        : 'border-white/10'
                     }`}
-                  />
-                </span>
-              </button>
-            ))}
+                    style={
+                      {
+                        '--project-mercury-delay': `${index * -1.35}s`,
+                        '--project-mercury-base': palette.base,
+                        '--project-mercury-mid': palette.mid,
+                        '--project-mercury-light': palette.light,
+                        '--project-mercury-dark': palette.dark,
+                        '--project-mercury-accent': palette.accent,
+                        '--project-mercury-mark': palette.mark,
+                      } as CSSProperties
+                    }
+                  >
+                    <span className="project-nav-mercury-surface" />
+                    <span className="project-nav-mercury-flow project-nav-mercury-flow-a" />
+                    <span className="project-nav-mercury-flow project-nav-mercury-flow-b" />
+                    <span className="project-nav-mercury-shine" />
+                    <span className="project-nav-mercury-mark">
+                      {getProjectMark(item.title)}
+                    </span>
+                    <span
+                      className={`absolute inset-0 transition-all duration-300 ${
+                        index === active
+                          ? 'bg-[radial-gradient(circle_at_42%_28%,rgba(255,255,255,0.18),transparent_30%)]'
+                          : 'bg-black/18'
+                      }`}
+                    />
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
