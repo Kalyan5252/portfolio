@@ -36,13 +36,12 @@ export const cards: LiveContextCard[] = [
 export const comparisionRows = [
   {
     legacy: 'Their AI writes you a subject line',
-    conversion:
-      'Conversion Agents draft the campaign, QA it, send it, and report on it',
+    conversion: 'Conversion Agents draft the campaign, QA it, send it',
   },
   {
     legacy: 'Workflows fire on if/then rules you wrote a year ago',
     conversion:
-      'Agents reason about each lead with the context that exists right now',
+      'Agents reason about each lead with the context that exists right',
   },
   {
     legacy: 'Every request starts from a blank brief',

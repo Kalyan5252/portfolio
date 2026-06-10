@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 type InvestigationSectionProps = {
   children: ReactNode;
@@ -15,10 +16,13 @@ export function InvestigationSection({
 }: InvestigationSectionProps) {
   return (
     <section
-      className={`flex w-full justify-center border-b border-white/8 ${sectionClassName}`}
+      className={`flex w-full justify-center border-b border-white/12 ${sectionClassName}`}
     >
       <div
-        className={`w-full max-w-[1280px] border-x border-white/8 px-5 sm:px-6 md:px-8 lg:px-12 ${outerClassName}`}
+        className={cn(
+          'w-full max-w-[1100px] border-x border-white/12 px-5 sm:px-6 md:px-8 lg:px-12',
+          outerClassName,
+        )}
       >
         <div className={innerClassName}>{children}</div>
       </div>

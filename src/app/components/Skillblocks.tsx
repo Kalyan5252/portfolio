@@ -84,10 +84,6 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
     },
   ];
 
-  const getDelay = (index: number) => {
-    return `delay-${index * 75}`;
-  };
-
   return (
     // <div className="relative h-80 flex flex-wrap gap-5 justify-center items-center">
     <div
