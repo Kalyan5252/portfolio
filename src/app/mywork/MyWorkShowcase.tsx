@@ -3,7 +3,13 @@
 import Image from 'next/image';
 import { motion, useReducedMotion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Activity, Dna, HeartPulse, MapPinned, ShieldCheck } from 'lucide-react';
+import {
+  Activity,
+  Dna,
+  HeartPulse,
+  MapPinned,
+  ShieldCheck,
+} from 'lucide-react';
 import type { CSSProperties, MouseEvent } from 'react';
 
 type WorkCard = {
@@ -42,7 +48,7 @@ const works: WorkCard[] = [
     id: 'healthcare',
     title: 'Healthcare Startup',
     label: 'Freelance',
-    meta: 'Patient-first product systems',
+    meta: 'QA & Backend Engineer',
     position: 'work-card--right',
     accent: '#7df0bc',
     Icon: HeartPulse,
@@ -213,6 +219,11 @@ export default function MyWorkShowcase() {
 
   return (
     <section id="my-work" className="work-showcase h-screen">
+      <div className="absolute top-0 h-10 w-full worksdispersion blur-3xl"></div>
+      <div className="absolute inset-0 -z-30 bg-[#0a1418f7]" />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
+      {/* <div className="absolute inset-0 -z-10 opacity-40 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:120px_120px] [mask-image:radial-gradient(circle_at_center,white_10%,transparent_78%)]" /> */}
+
       <div className="work-showcase__wash" />
       <div className="work-showcase__grain" />
       <div className="work-showcase__sweep" />

@@ -838,7 +838,7 @@ body {
   isolation: isolate;
   width: 100%;
   overflow: hidden;
-  background:
+  /* background:
     radial-gradient(
       circle at 50% 52%,
       rgba(112, 191, 155, 0.11),
@@ -846,7 +846,7 @@ body {
     ),
     radial-gradient(circle at 20% 64%, rgba(44, 106, 95, 0.2), transparent 34%),
     radial-gradient(circle at 82% 30%, rgba(30, 93, 84, 0.22), transparent 32%),
-    linear-gradient(145deg, #020708 0%, #061112 42%, #0f231d 100%);
+    linear-gradient(145deg, #020708 0%, #061112 42%, #0f231d 100%); */
   color: #fff;
 }
 
@@ -859,6 +859,7 @@ body {
 }
 
 .work-showcase__wash {
+  top: 0;
   z-index: -3;
   background:
     radial-gradient(
@@ -866,7 +867,7 @@ body {
       rgba(216, 255, 235, 0.08),
       transparent 25%
     ),
-    radial-gradient(circle at 52% 68%, rgba(19, 57, 48, 0.32), transparent 42%);
+    radial-gradient(circle at 50% 50%, rgb(8, 24, 18), transparent 42%);
   opacity: 0.72;
 }
 
@@ -877,7 +878,7 @@ body {
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 90px 90px;
-  mask-image: radial-gradient(circle at center, white 10%, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 50%, white 10%, transparent 78%);
 }
 
 .work-showcase__sweep {
@@ -1077,6 +1078,24 @@ body {
 .work-glass-card:hover .work-card__inner::after {
   opacity: 0.58;
   transform: translate3d(0, 0, 0) scale(1);
+}
+
+.projectsdispersion {
+  background: linear-gradient(
+    0deg,
+    rgba(32, 41, 32, 0.7) 90%,
+    rgba(196, 232, 206, 0) 40%
+  );
+  /* filter: blur(10px); */
+}
+
+.worksdispersion {
+  background: linear-gradient(
+    0deg,
+    rgba(32, 41, 32, 0.7) 100%,
+    rgba(196, 232, 206, 0) 40%
+  );
+  /* filter: blur(10px); */
 }
 
 .work-card__media,
