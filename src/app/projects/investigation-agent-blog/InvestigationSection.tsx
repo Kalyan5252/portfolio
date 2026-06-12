@@ -24,7 +24,8 @@ export function InvestigationSection({
           outerClassName,
         )}
       >
-        <div className={innerClassName}>{children}</div>
+        {children}
+        {/* <div className={innerClassName}>{children}</div> */}
       </div>
     </section>
   );

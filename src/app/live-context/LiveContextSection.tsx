@@ -15,7 +15,9 @@ type LiveContextSectionProps = {
 };
 
 function Icon({ variant: IconComponent }: { variant: LucideIcon }) {
-  return <IconComponent className="h-[2.05rem] w-[2.05rem]" strokeWidth={1.7} />;
+  return (
+    <IconComponent className="h-[2.05rem] w-[2.05rem]" strokeWidth={1.7} />
+  );
 }
 
 export function LiveContextSection({
@@ -34,6 +36,8 @@ export function LiveContextSection({
     <section
       className={`live-context-page relative w-full overflow-hidden text-white ${className} py-10`}
     >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_center,rgba(129,255,190,0.18),rgba(38,101,73,0.22)_42%,rgba(8,20,18,0.32)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(2,8,10,0.45),rgba(255,255,255,0)_40%,rgba(255,255,255,0)_100%)]" />
       <div className="live-context-page__backdrop absolute inset-0" />
       <div className="live-context-page__grid absolute inset-0" />
       <div className="live-context-page__noise absolute inset-0" />
@@ -53,7 +57,10 @@ export function LiveContextSection({
         </div>
 
         <div className="my-10 flex w-full justify-center">
-          <div className="live-context-shell w-full" style={{ maxWidth: shellMaxWidth }}>
+          <div
+            className="live-context-shell w-full"
+            style={{ maxWidth: shellMaxWidth }}
+          >
             <div className="pointer-events-none absolute inset-0 z-20">
               <div className="corner corner-tl" />
               <div className="corner corner-tr" />

@@ -168,6 +168,7 @@ const ProjectCards = () => {
                       src={item.image}
                       alt={item.title}
                       fill
+                      sizes="(min-width: 1024px) 280px, 0px"
                       className="object-cover opacity-85"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#061016] via-transparent to-transparent" />
@@ -187,6 +188,7 @@ const ProjectCards = () => {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="(min-width: 1280px) 560px, (min-width: 768px) 72vw, 92vw"
                   priority
                   className="object-cover"
                 />

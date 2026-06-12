@@ -60,3 +60,18 @@ export const comparisionRows = [
     conversion: 'Agents are the operating layer of the platform itself',
   },
 ];
+
+export const metrics = [
+  {
+    value: '75%',
+    label: 'Reduction in MOps time spent on recurring work',
+  },
+  {
+    value: '10x',
+    label: 'Faster campaign-to-launch cycle time',
+  },
+  {
+    value: '4wk',
+    label: 'Avg. migration time using agents',
+  },
+];

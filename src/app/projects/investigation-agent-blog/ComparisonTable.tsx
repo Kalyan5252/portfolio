@@ -30,7 +30,7 @@ export function ComparisonTable({
 }: ComparisonTableProps) {
   return (
     <div
-      className={`w-full overflow-hidden bg-gray-950/90 text-[#2a2a2a] shadow-[0_0_0_1px_rgba(255,255,255,0.25)_inset] ${className}`}
+      className={`w-full overflow-hidden bg-green-950/5 text-[#2a2a2a] ${className}`}
     >
       <div className="grid grid-cols-2 border-b border-white/12 bg-white/10">
         <div className="border-r border-white/12 px-8 py-7 sm:px-10 sm:py-7">

@@ -1,11 +1,15 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import CustomCursor from '../../components/CustomCursor';
 import { investigationProject } from '../../constants/projects';
 import InvestigationMedia from './InvestigationMedia';
 import { ComparisonTable } from './ComparisonTable';
+import { MetricQuotePanel } from './MetricQuotePanel';
 import { InvestigationSection } from './InvestigationSection';
-import { comparisionRows } from '@/app/constants/livecontext_dummy';
+import {
+  cards,
+  comparisionRows,
+  metrics,
+} from '@/app/constants/livecontext_dummy';
 import Header from '@/app/components/Header';
 import { LiveContextSection } from '@/app/live-context/LiveContextSection';
 
@@ -108,6 +112,7 @@ export default function InvestigationAgentBlogPage() {
                 src={investigationProject.architectureImage}
                 alt="Graph investigation system view"
                 fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -119,6 +124,7 @@ export default function InvestigationAgentBlogPage() {
                 src={investigationProject.graphImage}
                 alt="Graph investigation system view"
                 fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -143,6 +149,7 @@ export default function InvestigationAgentBlogPage() {
                 src={investigationProject.tableImage}
                 alt="Graph investigation system view"
                 fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -154,6 +161,7 @@ export default function InvestigationAgentBlogPage() {
                 src={investigationProject.neo4jImage}
                 alt="Graph investigation system view"
                 fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
               />
             </div>
@@ -167,15 +175,6 @@ export default function InvestigationAgentBlogPage() {
         </InvestigationSection>
       </section>
 
-      {/* <section>
-        <LiveContextSection
-          eyebrow="Live Context"
-          title="Knows your assets"
-          description="Works where your team already works. Every chat, every scheduled run starts from the same shared context, your data, your brand, your stack."
-          cards={cards}
-        />
-      </section> */}
-
       <InvestigationSection
         outerClassName="py-0 lg:px-0 lg:py-0"
         innerClassName=""
@@ -184,6 +183,24 @@ export default function InvestigationAgentBlogPage() {
           leftHeader="Legacy Map"
           rightHeader="Conversion"
           rows={comparisionRows}
+        />
+      </InvestigationSection>
+
+      <section>
+        <LiveContextSection
+          eyebrow="Live Context"
+          title="Knows your assets"
+          description="Works where your team already works. Every chat, every scheduled run starts from the same shared context, your data, your brand, your stack."
+          cards={cards}
+        />
+      </section>
+
+      <InvestigationSection outerClassName="!px-0 !py-0" innerClassName="">
+        <MetricQuotePanel
+          quote="Every time we dig into the platform, we find another use case worth building. It's not just solving the priorities I came in with, it's expanding what we can reasonably take on this year."
+          author="Jason Ginsberg"
+          title="Head of Marketing, GovWell"
+          metrics={metrics}
         />
       </InvestigationSection>
       <CustomCursor />
