@@ -66,7 +66,11 @@ const getProjectMark = (title: string) =>
     .join('')
     .toUpperCase();
 
-const ProjectCards = () => {
+const ProjectCards = ({
+  compactNavActive = false,
+}: {
+  compactNavActive?: boolean;
+}) => {
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
   const progressStartRef = useRef<number>(Date.now());
@@ -128,9 +132,9 @@ const ProjectCards = () => {
   }, []);
 
   return (
-    <div className="relative mt-6 h-[calc(100vh-13rem)] pb-28">
-      <div className="grid h-full min-h-0 gap-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative min-h-0 overflow-hidden rounded-xl px-4 py-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl md:px-6">
+    <div className="relative mt-6 min-h-[72rem] pb-8 sm:min-h-[76rem] lg:min-h-[82rem] xl:h-[calc(100vh-13rem)] xl:min-h-0 xl:pb-28">
+      <div className="grid h-full min-h-0 gap-5 xl:grid-cols-[1.15fr_0.85fr] xl:gap-6">
+        <div className="relative min-h-[21rem] overflow-hidden rounded-xl px-3 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:min-h-[24rem] sm:px-4 sm:py-5 md:min-h-[30rem] md:px-6 xl:min-h-0">
           <div className="project-stage-atmosphere absolute inset-0" />
           <div className="project-stage-glow project-stage-glow-one absolute" />
           <div className="project-stage-glow project-stage-glow-two absolute" />
@@ -181,7 +185,7 @@ const ProjectCards = () => {
               initial={{ opacity: 0.6, scale: 0.97, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex h-[82%] w-full max-w-[560px] flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b151b]/88 p-4 shadow-[0_24px_60px_rgba(0,0,0,0.34)]"
+              className="relative z-10 flex h-[82%] w-full max-w-[560px] flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b151b]/88 p-3 shadow-[0_24px_60px_rgba(0,0,0,0.34)] sm:p-4"
             >
               <div className="relative flex-1 overflow-hidden rounded-xl">
                 <Image
@@ -193,9 +197,9 @@ const ProjectCards = () => {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_38%,rgba(6,10,14,0.72)_100%)]" />
-                <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4">
+                <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 sm:inset-x-5 sm:bottom-5">
                   <div>
-                    <h3 className="mt-2 text-3xl font-bold tracking-[-0.03em] text-white lg:text-4xl">
+                    <h3 className="mt-2 text-2xl font-bold tracking-[-0.03em] text-white sm:text-3xl lg:text-4xl">
                       {project.title}
                     </h3>
                   </div>
@@ -205,37 +209,37 @@ const ProjectCards = () => {
           </div>
         </div>
 
-        <div className="relative min-h-0 overflow-hidden border border-white/10 bg-[linear-gradient(180deg,rgba(33,49,46,0.92),rgba(17,28,30,0.9))] rounded-xl">
+        <div className="relative min-h-[34rem] overflow-hidden rounded-xl border border-white/10 bg-[linear-gradient(180deg,rgba(33,49,46,0.92),rgba(17,28,30,0.9))] xl:min-h-0">
           <div className="absolute inset-0 opacity-[0.08] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22 viewBox=%220 0 120 120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/></filter><rect width=%22120%22 height=%22120%22 filter=%22url(%23n)%22 opacity=%220.55%22/></svg>')]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(111,156,133,0.16),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(47,89,78,0.18),transparent_38%)]" />
           <div className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[length:120px_120px]" />
 
           <div className="relative grid h-full grid-rows-[auto_1fr_auto]">
-            <div className="grid grid-cols-[3fr_1fr] border-b border-white/10">
-              <div className="px-8 py-7">
+            <div className="grid grid-cols-1 border-b border-white/10 sm:grid-cols-[3fr_1fr]">
+              <div className="px-5 py-5 sm:px-8 sm:py-7">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                   Project Overview
                 </p>
-                <h3 className="mt-4 text-4xl font-semibold tracking-[-0.05em] text-white">
+                <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
                   {project.title}
                 </h3>
                 <p className="mt-3 text-sm uppercase tracking-[0.26em] text-white/46">
                   {project.label}
                 </p>
               </div>
-              <div className="border-l border-white/10">
+              <div className="border-t border-white/10 sm:border-t-0 sm:border-l">
                 {project.href && !project.disabled ? (
                   <Link
                     href={project.href}
-                    className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-8 py-7 text-left"
+                    className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-5 py-5 text-left sm:px-8 sm:py-7"
                     aria-label={`Explore ${project.title}`}
                   >
                     <span className="explore-project-btn-fill explore-project-btn-fill-white" />
                     <span className="explore-project-btn-fill explore-project-btn-fill-green" />
 
                     <span className="relative z-10 flex w-full items-center justify-center">
-                      <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
-                        <span>Explore</span>
+                      <span className="mt-2 lg:mb-0 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
+                        <span className="mb-2 lg:mb-0">Explore</span>
                         <Image
                           src="/icons/Arrow Up Right Icon.svg"
                           alt=""
@@ -281,8 +285,8 @@ const ProjectCards = () => {
             </div>
 
             <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-              <div className="border-r border-white/10">
-                <div className="px-8 py-5">
+              <div className="border-b border-white/10 lg:border-r lg:border-b-0">
+                <div className="px-5 py-5 sm:px-8">
                   <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                     Case Study
                   </p>
@@ -295,7 +299,7 @@ const ProjectCards = () => {
               <div>
                 <div className="grid h-full grid-rows-2">
                   <div className="border-b border-white/10">
-                    <div className="px-8 py-5">
+                    <div className="px-5 py-5 sm:px-8">
                       <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                         Outcome
                       </p>
@@ -306,7 +310,7 @@ const ProjectCards = () => {
                   </div>
 
                   <div>
-                    <div className="px-8 py-5">
+                    <div className="px-5 py-5 sm:px-8">
                       <p className="text-[10px] tracking-[0.34em] text-white/36">
                         Category
                       </p>
@@ -320,7 +324,7 @@ const ProjectCards = () => {
             </div>
 
             <div className="border-t border-white/10">
-              <div className="border-b border-white/10 px-8 py-5">
+              <div className="border-b border-white/10 px-5 py-5 sm:px-8">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                   Summary
                 </p>
@@ -333,9 +337,15 @@ const ProjectCards = () => {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
-        <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(29,42,49,0.5),rgba(15,24,31,0.34))] px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-[28px]">
-          <div className="flex min-w-0 flex-1 items-center justify-center gap-2 sm:gap-3">
+      <div
+        className={`pointer-events-none z-30 flex justify-center w-fit justify-self-center px-1 sm:px-4 ${
+          compactNavActive
+            ? 'fixed inset-x-0 bottom-4 mt-0'
+            : 'mt-6 xl:absolute xl:inset-x-0 xl:bottom-0 xl:mt-0'
+        }`}
+      >
+        <div className="pointer-events-auto w-full max-w-[880px] overflow-y-visible rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(29,42,49,0.5),rgba(15,24,31,0.34))] px-3 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-[28px] sm:px-4">
+          <div className="mx-auto flex min-w-max items-center justify-start gap-2 sm:justify-center sm:gap-3">
             {showcaseProjects.map((item, index) => {
               const palette =
                 MERCURY_NAV_PALETTES[index % MERCURY_NAV_PALETTES.length];
@@ -344,9 +354,9 @@ const ProjectCards = () => {
                 <button
                   key={item.title}
                   onClick={() => changeProject(index)}
-                  className={`group relative h-14 w-14 shrink-0 rounded-full transition-all duration-300 ${
+                  className={`group relative h-12 w-12 shrink-0 rounded-full transition-all duration-300 sm:h-14 sm:w-14 ${
                     index === active
-                      ? 'scale-125 -translate-y-5 transition-all duration-300'
+                      ? 'scale-110 -translate-y-2 transition-all duration-300 sm:scale-125 sm:-translate-y-5'
                       : 'opacity-75 hover:opacity-100'
                   }`}
                   aria-label={item.title}

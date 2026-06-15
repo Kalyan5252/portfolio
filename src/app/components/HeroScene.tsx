@@ -19,18 +19,15 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import { JSX } from 'react';
 
 const degreesToRadians = (degrees: number) => (degrees * Math.PI) / 180;
-const LAPTOP_FINAL_POSITION = { x: 2, y: -0.8, z: 0 };
-const LAPTOP_SCALE = 0.08;
+const DESKTOP_LAPTOP_FINAL_POSITION = { x: 2, y: -0.8, z: 0 };
+const COMPACT_LAPTOP_FINAL_POSITION = { x: 2.15, y: -2.1, z: 0 };
+const DESKTOP_LAPTOP_SCALE = 0.08;
+const COMPACT_LAPTOP_SCALE = 0.062;
 
 const LAPTOP_FINAL_ROTATION = {
   x: degreesToRadians(190),
   y: degreesToRadians(210),
   z: degreesToRadians(190),
-};
-const LAPTOP_START_POSITION = {
-  x: LAPTOP_FINAL_POSITION.x,
-  y: -10.65,
-  z: -1.35,
 };
 const LAPTOP_START_ROTATION = {
   x: 0,
@@ -40,6 +37,24 @@ const LAPTOP_START_ROTATION = {
 const SPHERE_ANIMATION_DELAY = 0.85;
 const LOWER_SPHERE_SPEED = 0.032;
 const UPPER_SPHERE_SPEED = 0.05;
+
+const getLaptopLayout = (viewportWidth: number) => {
+  const compact = viewportWidth < 1024;
+  const finalPosition = compact
+    ? COMPACT_LAPTOP_FINAL_POSITION
+    : DESKTOP_LAPTOP_FINAL_POSITION;
+  const scale = compact ? COMPACT_LAPTOP_SCALE : DESKTOP_LAPTOP_SCALE;
+
+  return {
+    scale,
+    finalPosition,
+    startPosition: {
+      x: finalPosition.x,
+      y: compact ? -12.2 : -10.65,
+      z: -1.35,
+    },
+  };
+};
 
 // Define the custom Glow Shader Material
 const GlowShaderMaterial = shaderMaterial(
@@ -225,17 +240,31 @@ function Model() {
   const modelRef = useRef<Group | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoTextureRef = useRef<VideoTexture | null>(null);
+  const [laptopLayout, setLaptopLayout] = React.useState(() =>
+    getLaptopLayout(1280),
+  );
+
+  useEffect(() => {
+    const syncLayout = () => {
+      setLaptopLayout(getLaptopLayout(window.innerWidth));
+    };
+
+    syncLayout();
+    window.addEventListener('resize', syncLayout);
+
+    return () => window.removeEventListener('resize', syncLayout);
+  }, []);
 
   useEffect(() => {
     const model = modelRef.current;
 
     if (model) {
       gsap.set(model, { visible: true });
-      gsap.set(model.position, LAPTOP_START_POSITION);
+      gsap.set(model.position, laptopLayout.startPosition);
       gsap.set(model.scale, {
-        x: LAPTOP_SCALE,
-        y: LAPTOP_SCALE,
-        z: LAPTOP_SCALE,
+        x: laptopLayout.scale,
+        y: laptopLayout.scale,
+        z: laptopLayout.scale,
       });
       gsap.set(model.rotation, LAPTOP_START_ROTATION);
 
@@ -251,7 +280,7 @@ function Model() {
         .to(
           model.position,
           {
-            ...LAPTOP_FINAL_POSITION,
+            ...laptopLayout.finalPosition,
           },
           0,
         )
@@ -267,7 +296,7 @@ function Model() {
         entranceTimeline.kill();
       };
     }
-  }, []);
+  }, [laptopLayout]);
 
   useEffect(() => {
     if (!videoRef.current) {
@@ -324,11 +353,11 @@ function Model() {
       ref={modelRef}
       object={scene}
       position={[
-        LAPTOP_START_POSITION.x,
-        LAPTOP_START_POSITION.y,
-        LAPTOP_START_POSITION.z,
+        laptopLayout.startPosition.x,
+        laptopLayout.startPosition.y,
+        laptopLayout.startPosition.z,
       ]}
-      scale={LAPTOP_SCALE}
+      scale={laptopLayout.scale}
       rotation={
         new Euler(
           LAPTOP_START_ROTATION.x,
@@ -351,7 +380,6 @@ function Plane() {
 
 function HeroScene() {
   return (
-    // <div className="absolute right-0 top-0 z-10 h-full w-full">
     <Canvas
       dpr={[1, 1.5]}
       camera={{ position: [0, 2, 5], fov: 50 }}

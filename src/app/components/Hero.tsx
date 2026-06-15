@@ -6,11 +6,14 @@ import MouseScroll from './MouseScroll';
 
 const Hero = () => {
   return (
-    <div className="relative top-0 w-screen grid grid-cols-2 h-screen bg-gradient-to-bl from-[#192e35] to-[#04080a]">
-      <Intro />
-      <HeroScene />
+    <div className="relative top-0 max-w-8xl grid h-screen w-screen lg:grid-cols-2 bg-gradient-to-bl from-[#192e35] to-[#04080a]">
+      <div className="relative z-10">
+        <Intro />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 top-0 z-0 lg:relative lg:inset-auto">
+        <HeroScene />
+      </div>
       <MouseScroll />
-      {/* <div className="absolute bottom-15 h-5 w-full bg-try blur-3xl opacity-70"></div> */}
       <div className="absolute bottom-0 h-10 w-full herodispersion blur-3xl"></div>
     </div>
   );

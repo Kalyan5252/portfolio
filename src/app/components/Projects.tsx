@@ -7,6 +7,21 @@ import ProjectCards from './ProjectCards';
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const [isCompactViewport, setIsCompactViewport] = React.useState(false);
+  const [isSectionActive, setIsSectionActive] = React.useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1279px)');
+
+    const syncViewport = () => {
+      setIsCompactViewport(mediaQuery.matches);
+    };
+
+    syncViewport();
+    mediaQuery.addEventListener('change', syncViewport);
+
+    return () => mediaQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -42,11 +57,26 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSectionActive(entry.isIntersecting);
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="projects"
       ref={sectionRef}
-      className="relative isolate h-screen overflow-hidden px-6 py-8 text-white md:px-10 lg:px-14"
+      className="relative isolate overflow-hidden px-4 py-8 text-white sm:px-6 md:px-10 lg:px-14 xl:h-screen"
     >
       <div className="absolute inset-0 -z-30 bg-[#050b10]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
@@ -62,7 +92,7 @@ const Projects = () => {
         </span>
         <div className="grid gap-4 xl:grid-cols-[1.4fr_0.9fr] xl:items-end">
           <div className="space-y-3">
-            <h2 className="project-title relative text-4xl font-black tracking-[-0.01em] md:text-5xl lg:text-[3rem] lg:leading-[0.95]">
+            <h2 className="project-title relative text-3xl font-black tracking-[-0.01em] sm:text-4xl md:text-5xl lg:text-[3rem] lg:leading-[0.95]">
               <span className="project-title-base uppercase">
                 Crafted to be explored.
               </span>
@@ -109,7 +139,9 @@ const Projects = () => {
         </div>
       </div>
 
-      <ProjectCards />
+      <ProjectCards
+        compactNavActive={isCompactViewport && isSectionActive}
+      />
       <div className="absolute bottom-0 h-10 w-full projectsdispersion blur-3xl"></div>
     </section>
   );

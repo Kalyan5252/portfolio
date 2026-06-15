@@ -2,9 +2,17 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { SKILLS } from '../constants';
 
-const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
+type SkillEntry = (typeof SKILLS)[number][number];
+
+const Skillblocks = ({
+  activeIndex,
+  compactLayout = false,
+}: {
+  activeIndex: number;
+  compactLayout?: boolean;
+}) => {
   const [currentSkills, setCurrentSkills] = useState(SKILLS[activeIndex]);
-  const [exitingSkills, setExitingSkills] = useState<any[]>([]);
+  const [exitingSkills, setExitingSkills] = useState<SkillEntry[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const exitingRef = useRef<HTMLDivElement>(null);
   const [start, setStart] = useState(true);
@@ -65,6 +73,12 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
   }, [currentSkills]); // Runs when currentSkills update
 
   useEffect(() => {
+    if (compactLayout) {
+      setCurrentSkills(SKILLS[activeIndex]);
+      setExitingSkills([]);
+      return;
+    }
+
     if (!containerRef.current || !exitingRef.current) return;
 
     // Store old skills before switching
@@ -92,7 +106,7 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
       setExitingSkills([]);
     }, 800);
     setStart(false);
-  }, [activeIndex]);
+  }, [activeIndex, compactLayout]);
 
   const divLayouts = [
     {
@@ -111,6 +125,51 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
       main: 'w-full',
     },
   ];
+
+  if (compactLayout) {
+    return (
+      <div className="relative w-full max-w-5xl px-1 sm:px-2">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[2rem]">
+          <div className="skill-starfield opacity-70">
+            {particleSeeds.slice(0, 16).map((particle) => (
+              <span
+                key={particle.id}
+                className="skill-star"
+                style={{
+                  top: particle.top,
+                  left: particle.left,
+                  width: particle.size,
+                  height: particle.size,
+                  animationDelay: particle.delay,
+                  animationDuration: particle.duration,
+                  opacity: particle.opacity,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
+          {currentSkills.map((skill) => (
+            <div
+              key={`compact-${skill.techname}`}
+              className="group relative flex min-h-[7.6rem] flex-col items-center justify-center gap-2.5 overflow-hidden rounded-2xl bg-[linear-gradient(180deg,rgba(36,56,66,0.42),rgba(19,30,37,0.18))] px-2 py-3 text-center text-white shadow-[0_18px_48px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:min-h-[8rem] sm:px-3 sm:py-4"
+            >
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(122,214,255,0.12),transparent_38%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_38%)] opacity-70" />
+              <img
+                src={`/icons/${skill.icon}`}
+                alt={skill.techname}
+                className={skill.styles}
+              />
+              <p className="text-[11px] font-medium tracking-[0.06em] text-white/78 sm:text-xs md:text-sm">
+                {skill.techname}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     // <div className="relative h-80 flex flex-wrap gap-5 justify-center items-center">
