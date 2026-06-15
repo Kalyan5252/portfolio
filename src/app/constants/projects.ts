@@ -33,7 +33,7 @@ export const showcaseProjects: ProjectEntry[] = [
       'Built a real-time car configurator with live model switching, paint control, pattern overlays, and showroom lighting previews.',
     category: '3D Showcase',
     outcome: 'Real-time customization with showroom-ready polish',
-    disabled: true,
+    href: '/projects/3d-car-showcase',
   },
   {
     title: 'Automated Payroll',
@@ -88,6 +88,49 @@ export const investigationProject = {
       id: '4.',
       title: 'Query Generation Strategies',
       body: 'Implemented strategies include direct-edge lookup, known-intermediate traversal, bounded multi-hop fallback, shortest-path search, all-path search, timestamp correlation, and merged CE/PE evidence flows. The system prioritizes schema-specific routes, uses business keys such as msisdn, imei, cell_id, ip, and session_id, and avoids unsafe or semantically incorrect query patterns.',
+    },
+  ],
+};
+
+export const carShowcaseProject = {
+  title: '3D Car Showcase',
+  label: 'Realtime Configurator',
+  dateRange: '2024 - 2025',
+  category: '3D Showcase',
+  heroImage: '/images/projects/project_2/cars_1.png',
+  introImage: '/images/projects/project_2/cars_3.png',
+  graphImage: '/images/projects/project_2/cars_2.png',
+  architectureImage: '/images/projects/project_2/cars_1.png',
+  neo4jImage: '/images/projects/project_2/cars_5.png',
+  tableImage: '/images/projects/project_2/cars_8.png',
+  video: '/videos/project2_showcase.mp4',
+  summary:
+    'Immersive 3D car configurator for previewing models, paint, texture overlays, lighting moods, and reflective showroom setups in real time.',
+  introduction:
+    'Built a showroom-style 3D configurator that lets users swap car models, tune body color, apply texture overlays, and inspect the result under different lighting and ground reflections without breaking immersion.',
+  caseStudy:
+    'Most 3D car demos stop at a single beautiful render. That is useful for presentation, but it does not help a buyer, designer, or sales team compare how a finish behaves across models, lighting conditions, or display setups. This project was designed to push beyond that limitation. The experience moves from cinematic viewing into a hands-on configuration flow where users can rotate the car, switch between multiple models, adjust body color, test pattern overlays, change environment presets, toggle reflective ground moods, and save a preferred build for later review. The core challenge was balancing visual polish with real product behavior, keeping the scene premium while the controls, persistence layer, and review surfaces worked like a practical showroom tool.',
+  outcome: 'Real-time customization with showroom-ready polish.',
+  solutionBlocks: [
+    {
+      id: '1.',
+      title: 'Realtime Scene Orchestration',
+      body: 'The 3D experience is driven through React Three Fiber and Drei, with a shared UI state object controlling the selected model, body color, environment, ground mode, and texture behavior. Orbit controls, a tuned perspective camera, conditional environment loading, and scene-specific lighting keep the interaction smooth while allowing the showcase to shift between cinematic preview and hands-on inspection.',
+    },
+    {
+      id: '2.',
+      title: 'Configurator Control Surface',
+      body: 'The interface is organized as a practical showroom control system rather than a loose collection of widgets. Users can open focused panels for color selection, pattern overlays, environment changes, ground presets, and model switching. This keeps the customization flow understandable while still exposing enough options to make the preview feel genuinely exploratory.',
+    },
+    {
+      id: '3.',
+      title: 'Materials, Lighting, and Mood',
+      body: 'The strongest product decision was treating lighting and presentation as part of the configuration itself. HDRI skies, stage lighting, reflective ground states, and texture overlays all change the emotional read of the same vehicle. That turns the showcase from a simple model viewer into a finish-testing surface where paint, reflections, and silhouette can be judged in context.',
+    },
+    {
+      id: '4.',
+      title: 'Save, Review, and Analytics',
+      body: 'Configured builds can be posted into a MongoDB-backed workflow, giving the app a real product loop beyond the canvas. Saved entries capture the customer name, selected model, color, material, and texture, then surface through admin and analytics pages for review, approval, and pattern-level reporting. That makes the project feel closer to a sales-enablement system than a one-off graphics experiment.',
     },
   ],
 };

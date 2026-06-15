@@ -1315,6 +1315,26 @@ body {
   text-align: right;
 }
 
+.work-card__content--going {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.work-card__body--going {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
+
+.work-card__body--going h3,
+.work-card__body--going p {
+  width: 100%;
+  text-align: right;
+}
+
 .work-card--left .work-card__content > div {
   width: min(100%, 20rem);
 }
