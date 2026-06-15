@@ -132,7 +132,7 @@ const AnimatedText = () => {
 
   return (
     <div className="flex h-full items-start justify-start px-6 pt-20 sm:px-8 sm:pt-24 md:pt-28 lg:items-center lg:justify-center lg:px-0 lg:pt-0">
-      <div className="w-full max-w-xl text-left font-bold text-xl md:text-2xl lg:text-4xl">
+      <div className="w-full max-w-xl text-left font-bold text-xl md:text-2xl lg:text-4xl h-full justify-center lg:justify-normal lg:h-auto flex flex-col items-center">
         <div ref={heyRef} className="relative flex space-x-1">
           {'hey'.split('').map((char, index) => (
             <span key={index} className="char opacity-0 inline-block">
@@ -165,7 +165,10 @@ const AnimatedText = () => {
           ))}
         </h1>
 
-        <h1 ref={titleRef} className="text-lg md:text-xl lg:text-2xl">
+        <h1
+          ref={titleRef}
+          className="text-lg md:text-xl lg:text-2xl pb-40 lg:pb-0"
+        >
           {'Full Stack & Applied AI Engineer'.split('').map((char, index) => (
             <span
               key={index}

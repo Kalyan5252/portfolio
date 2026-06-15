@@ -10,7 +10,7 @@ const Hero = () => {
       <div className="relative z-10">
         <Intro />
       </div>
-      <div className="absolute inset-x-0 bottom-0 top-[34%] z-0 md:top-[42%] lg:relative lg:inset-auto">
+      <div className="absolute inset-x-0 bottom-0 top-0 z-0 md:top-[42%] lg:relative lg:inset-auto">
         <HeroScene />
       </div>
       <MouseScroll />
