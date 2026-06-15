@@ -132,7 +132,7 @@ const ProjectCards = ({
   }, []);
 
   return (
-    <div className="relative mx-auto mt-6 min-h-[72rem] w-full max-w-7xl pb-8 sm:min-h-[76rem] lg:min-h-[82rem] xl:h-[min(42rem,calc(100svh-13rem))] xl:min-h-0 xl:pb-24">
+    <div className="relative mx-auto mt-6 min-h-[72rem] w-full max-w-7xl pb-8 sm:min-h-[76rem] lg:min-h-[82rem] xl:h-[42rem] xl:min-h-0 xl:pb-24">
       <div className="grid h-full min-h-0 gap-5 xl:grid-cols-[1.08fr_0.92fr] xl:gap-5">
         <div className="relative min-h-[21rem] overflow-hidden rounded-xl px-3 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:min-h-[24rem] sm:px-4 sm:py-5 md:min-h-[30rem] md:px-6 xl:min-h-0 xl:px-4 xl:py-4">
           <div className="project-stage-atmosphere absolute inset-0" />

@@ -76,7 +76,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative isolate overflow-hidden px-4 py-8 text-white sm:px-6 md:px-10 lg:px-14 xl:h-screen"
+      className="relative isolate overflow-hidden px-4 py-8 text-white sm:px-6 md:px-10 lg:px-14 xl:min-h-0 xl:py-10"
     >
       <div className="absolute inset-0 -z-30 bg-[#050b10]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
