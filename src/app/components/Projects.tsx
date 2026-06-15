@@ -109,6 +109,7 @@ const Projects = () => {
       </div>
 
       <ProjectCards />
+      <div className="absolute bottom-0 h-10 w-full projectsdispersion blur-3xl"></div>
     </section>
   );
 };

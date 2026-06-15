@@ -2,15 +2,15 @@ import CustomCursor from './components/CustomCursor';
 import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
-import Empty from './components/Empty';
+import MyWorkShowcase from './mywork/MyWorkShowcase';
 
 export default function Home() {
   return (
     <main className="text-white">
-      {/* <Hero /> */}
-      {/* <Skills /> */}
-      {/* <Empty /> */}
+      {/* <Hero />
+      <Skills /> */}
       <Projects />
+      <MyWorkShowcase />
     </main>
   );
 }

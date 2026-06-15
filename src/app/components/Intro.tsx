@@ -21,7 +21,7 @@ const AnimatedText = () => {
     if (screenWidth < 1024) {
       xValue = 0;
     } else {
-      xValue = -220;
+      xValue = -215;
     }
 
     if (heyChars && imChars) {
@@ -93,23 +93,24 @@ const AnimatedText = () => {
           duration: 0.5,
           delay: 3,
           ease: 'power2.out',
-        }
+        },
       );
     }
     if (titleChars) {
       gsap.fromTo(
         titleChars,
-        { opacity: 0, scale: 0.5, y: -90 },
+        { opacity: 0.4, scale: 0.5, x: -80, y: -105, rotateY: 90 },
         {
           opacity: 1,
           scale: 1,
           y: -110,
-          x: -43,
+          x: -80,
+          rotateY: 0,
           stagger: 0.1, // Delay between letters
           duration: 0.5,
           delay: 6,
           ease: 'power2.out',
-        }
+        },
       );
     }
     // if (kalyanRef.current) {
@@ -138,7 +139,7 @@ const AnimatedText = () => {
       ></div>
 
       <div ref={imRef} className="relative flex space-x-1 mt-2">
-        {"i'm".split('').map((char, index) => (
+        {"I'm".split('').map((char, index) => (
           <span key={index} className="char opacity-0 inline-block">
             {char}
           </span>
@@ -154,16 +155,11 @@ const AnimatedText = () => {
       </h1>
 
       <h1 ref={titleRef} className="text-lg md:text-xl lg:text-2xl">
-        {'Machine Learning & Full Stack Engineer'
-          .split('')
-          .map((char, index) => (
-            <span
-              key={index}
-              className="char font-light inline-block opacity-0"
-            >
-              {char === ' ' ? '\u00A0' : char} {/* Handle space properly */}
-            </span>
-          ))}
+        {'Full Stack & Applied AI Engineer'.split('').map((char, index) => (
+          <span key={index} className="char font-light inline-block opacity-0">
+            {char === ' ' ? '\u00A0' : char} {/* Handle space properly */}
+          </span>
+        ))}
       </h1>
       {/* <Image
         src={'/people/dp.png'}

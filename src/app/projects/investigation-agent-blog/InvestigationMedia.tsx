@@ -45,6 +45,7 @@ const InvestigationMedia = ({
             src={poster}
             alt={`${title} preview poster`}
             fill
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_24%,rgba(9,15,18,0.08)_100%)]" />

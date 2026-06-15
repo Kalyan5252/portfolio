@@ -5,7 +5,7 @@ export const SKILLS = [
       icon: 'html.png',
       techname: 'Html5',
       styles: 'w-14 h-14 drop-shadow-[0_0_15px_rgba(211,88,54,0.8)]',
-      position: { top: '60%', left: '10%' },
+      position: { top: '0%', left: '20%' },
     },
     {
       icon: 'css.png',
@@ -17,7 +17,8 @@ export const SKILLS = [
       icon: 'js.png',
       techname: 'Javascript',
       styles: 'w-14 h-14 drop-shadow-[0_0_15px_rgba(250,224,75,0.8)]',
-      position: { top: '0%', left: '20%' },
+
+      position: { top: '60%', left: '10%' },
     },
     {
       icon: 'postgres.png',
@@ -28,7 +29,7 @@ export const SKILLS = [
     {
       icon: 'node.png',
       techname: 'Node.js',
-      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(51,53,52,1)] ',
+      styles: 'w-14 h-14 drop-shadow-[0_0_25px_rgba(62, 134, 61, 1)] ',
       position: { top: '0%', left: '35%' },
     },
     {
@@ -47,14 +48,14 @@ export const SKILLS = [
     {
       icon: 'tailwind.png',
       techname: 'TailwindCss',
-      styles: 'h-10 w-14 drop-shadow-[0_0_25px_rgba(52,120,198,1)]',
+      styles: 'h-9 w-14 drop-shadow-[0_0_25px_rgba(52,120,198,1)]',
       position: { top: '120%', left: '60%' },
     },
 
     {
       icon: 'next.png',
       techname: 'Next.Js',
-      styles: 'w-14 h-8 drop-shadow-[0_0_5px_rgba(255,255,255,1)]',
+      styles: 'w-16 h-16 drop-shadow-[0_0_5px_rgba(,0,0,0.4)]',
       position: { top: '0%', left: '60%' },
     },
 
@@ -83,13 +84,14 @@ export const SKILLS = [
       icon: 'aws.png',
       techname: 'AWS',
       // styles: 'w-14 h-10 drop-shadow-[0_0_25px_rgba(255,255,255,1)]',
-      styles: 'w-16 h-10 drop-shadow-[0_0_30px_rgba(242,255,255,1)]',
+      styles: 'w-16 h-10 drop-shadow-[0_0_30px_rgba(100,120,100,0.1)]',
       position: { top: '10%', left: '20%' },
     },
     {
       icon: 'docker.png',
       techname: 'Docker',
-      styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
+      styles:
+        'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)] group-hover:-translate-y-1',
       // styles: 'w-14 h-14 drop-shadow-[0_0_5px_rgba(46,107,178,1)]',
       position: { top: '30%', left: '50%' },
     },
@@ -114,13 +116,13 @@ export const SKILLS = [
     {
       icon: 'terraform.png',
       techname: 'Terraform',
-      styles: 'w-14 h-14 drop-shadow-[0_0_2px_rgba(255,255,182,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_2px_rgba(255,255,182,0.2)]',
       position: { top: '20%', left: '80%' },
     },
     {
       icon: 'github.png',
       techname: 'Github',
-      styles: 'w-14 h-14 drop-shadow-[0_0_55px_rgba(255,255,255,1)]',
+      styles: 'w-14 h-14 drop-shadow-[0_0_55px_rgba(255,255,255,0.5)]',
       position: { top: '10%', left: '65%' },
     },
   ],

@@ -35,6 +35,18 @@ export const showcaseProjects: ProjectEntry[] = [
     outcome: 'Real-time customization with showroom-ready polish',
     disabled: true,
   },
+  {
+    title: 'Automated Payroll',
+    label: 'Smart HR Suite',
+    image: '/images/projects/project_3/image1.png',
+    summary:
+      'Full-stack payroll system with attendance, leave management, salary automation, and payouts.',
+    narrative:
+      'Built a payroll platform integrating attendance, leave tracking, salary processing, and automated payouts in one workflow.',
+    category: 'HRTech SaaS',
+    outcome: 'Real-time customization with showroom-ready polish',
+    disabled: true,
+  },
 ];
 
 export const investigationProject = {
