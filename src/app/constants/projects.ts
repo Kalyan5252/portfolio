@@ -24,6 +24,18 @@ export const showcaseProjects: ProjectEntry[] = [
     href: '/projects/investigation-agent-blog',
   },
   {
+    title: 'Job Search Agent',
+    label: 'Multi-Agent Backend',
+    image: '/images/projects/project_4/image1.svg',
+    summary:
+      'Backend job automation system for discovering roles, scoring fit, filling applications, and tracking email updates.',
+    narrative:
+      'Built a multi-agent backend with discovery workflows, queue-backed application runs, Playwright form handling, and inbox-driven status tracking.',
+    category: 'Backend Automation',
+    outcome: 'Safer, staged application automation with human-in-loop fallbacks',
+    href: '/projects/job-search-agent',
+  },
+  {
     title: '3D Car Configurator',
     label: 'Showroom Preview',
     image: '/images/projects/project_2/cars_4.png',
@@ -37,15 +49,15 @@ export const showcaseProjects: ProjectEntry[] = [
   },
   {
     title: 'Automated Payroll',
-    label: 'Smart HR Suite',
-    image: '/images/projects/project_3/image1.png',
+    label: 'HR & Payout Engine',
+    image: '/images/projects/project_5/image2.png',
     summary:
-      'Full-stack payroll system with attendance, leave management, salary automation, and payouts.',
+      'Full-stack payroll platform covering employee records, attendance, leave, payroll computation, and salary disbursements.',
     narrative:
-      'Built a payroll platform integrating attendance, leave tracking, salary processing, and automated payouts in one workflow.',
+      'Built a payroll operations system connecting HR records, attendance, leave, payslips, and Razorpay-backed payout execution.',
     category: 'HRTech SaaS',
-    outcome: 'Real-time customization with showroom-ready polish',
-    disabled: true,
+    outcome: 'End-to-end payroll operations with protected payout workflows',
+    href: '/projects/automated-payroll',
   },
 ];
 

@@ -1,0 +1,28 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#081015"/>
+  <text x="96" y="146" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="62" font-weight="700">Tracking and Status Sync</text>
+  <text x="96" y="198" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="28">A scheduled loop reads email updates, classifies intent, and writes application state back to PostgreSQL.</text>
+  <rect x="116" y="292" width="360" height="372" rx="30" fill="#0D1A20" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="164" y="356" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="38" font-weight="700">Inbox</text>
+  <rect x="154" y="410" width="284" height="58" rx="18" fill="#11242C"/>
+  <rect x="154" y="492" width="284" height="58" rx="18" fill="#11242C"/>
+  <rect x="154" y="574" width="284" height="58" rx="18" fill="#11242C"/>
+  <text x="178" y="447" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Interview invite from ...</text>
+  <text x="178" y="529" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Thanks for applying ...</text>
+  <text x="178" y="611" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Unfortunately ...</text>
+  <rect x="622" y="370" width="344" height="216" rx="30" fill="#10232C" stroke="#D7A9FF" stroke-width="2"/>
+  <text x="684" y="438" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="38" font-weight="700">Classifier</text>
+  <text x="680" y="486" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">applied / interview / rejected</text>
+  <text x="704" y="522" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">or leave unknown unchanged</text>
+  <rect x="1110" y="292" width="370" height="372" rx="30" fill="#0D1A20" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="1160" y="356" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="38" font-weight="700">Applications</text>
+  <rect x="1148" y="418" width="294" height="54" rx="18" fill="#17333D"/>
+  <rect x="1148" y="496" width="294" height="54" rx="18" fill="#17333D"/>
+  <rect x="1148" y="574" width="294" height="54" rx="18" fill="#17333D"/>
+  <text x="1180" y="451" fill="#BDF7E1" font-family="Arial, sans-serif" font-size="22">Applied  ->  Interview</text>
+  <text x="1180" y="529" fill="#BDF7E1" font-family="Arial, sans-serif" font-size="22">Queued   ->  Applied</text>
+  <text x="1180" y="607" fill="#BDF7E1" font-family="Arial, sans-serif" font-size="22">Applied  ->  Rejected</text>
+  <path d="M476 478H622" stroke="#D7A9FF" stroke-width="4"/>
+  <path d="M966 478H1110" stroke="#7FD8B4" stroke-width="4"/>
+  <text x="646" y="734" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">Cron cadence in the repo: discovery every 6 hours, tracking every 20 minutes.</text>
+</svg>

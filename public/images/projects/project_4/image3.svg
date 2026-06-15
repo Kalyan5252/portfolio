@@ -1,0 +1,33 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#081015"/>
+  <text x="96" y="146" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="62" font-weight="700">Discovery and Scoring Flow</text>
+  <text x="96" y="198" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="28">Country-aware source collection, profile hydration, rate-limited scoring, and queue-ready output.</text>
+  <rect x="110" y="290" width="210" height="108" rx="24" fill="#10232C" stroke="#6CD6FF" stroke-width="2"/>
+  <text x="158" y="352" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="28" font-weight="700">Job APIs</text>
+  <rect x="110" y="438" width="210" height="108" rx="24" fill="#10232C" stroke="#6CD6FF" stroke-width="2"/>
+  <text x="146" y="500" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="28" font-weight="700">Remote Boards</text>
+  <rect x="110" y="586" width="210" height="108" rx="24" fill="#10232C" stroke="#6CD6FF" stroke-width="2"/>
+  <text x="156" y="648" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="28" font-weight="700">LinkedIn</text>
+  <rect x="430" y="392" width="250" height="200" rx="28" fill="#12252E" stroke="#7FD8B4" stroke-width="2"/>
+  <text x="484" y="454" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Resume</text>
+  <text x="474" y="498" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Hydration</text>
+  <text x="480" y="540" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">role, skills,</text>
+  <text x="470" y="570" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">experience band</text>
+  <rect x="782" y="320" width="286" height="140" rx="28" fill="#10232C" stroke="#FFD26F" stroke-width="2"/>
+  <text x="840" y="376" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">LLM Scoring</text>
+  <text x="834" y="416" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">fit score + apply decision</text>
+  <rect x="782" y="516" width="286" height="140" rx="28" fill="#10232C" stroke="#FFD26F" stroke-width="2"/>
+  <text x="818" y="572" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Rate Limit Guard</text>
+  <text x="826" y="612" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">batch size + backoff logic</text>
+  <rect x="1182" y="392" width="288" height="200" rx="28" fill="#12252E" stroke="#D7A9FF" stroke-width="2"/>
+  <text x="1240" y="454" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Queue</text>
+  <text x="1226" y="498" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Candidates</text>
+  <text x="1232" y="540" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Mongo persistence +</text>
+  <text x="1218" y="570" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">BullMQ apply workers</text>
+  <path d="M320 344H430" stroke="#6CD6FF" stroke-width="4"/>
+  <path d="M320 492H430" stroke="#6CD6FF" stroke-width="4"/>
+  <path d="M320 640H430" stroke="#6CD6FF" stroke-width="4"/>
+  <path d="M680 492H782" stroke="#7FD8B4" stroke-width="4"/>
+  <path d="M925 460V516" stroke="#FFD26F" stroke-width="4"/>
+  <path d="M1068 586H1182" stroke="#D7A9FF" stroke-width="4"/>
+</svg>
