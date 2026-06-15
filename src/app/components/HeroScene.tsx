@@ -186,7 +186,7 @@ function GlowingSphere() {
 
       <group ref={sphereRef} position={[2.18, 4.55, 1.12]}>
         <mesh>
-          <sphereGeometry args={[0.3, 32, 32]} />
+          <sphereGeometry args={[0.24, 32, 32]} />
           <meshStandardMaterial
             color={new Color('#fff')}
             roughness={0}
