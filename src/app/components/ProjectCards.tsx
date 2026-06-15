@@ -11,49 +11,49 @@ const AUTOPLAY_DURATION_MS = 15000;
 
 const MERCURY_NAV_PALETTES = [
   {
-    base: '#12264d',
-    mid: '#7fc8ff',
-    light: '#f5d6c8',
-    dark: '#050a25',
-    accent: 'rgba(126,203,255,0.96)',
-    ring: 'rgba(126,203,255,0.96)',
-    mark: 'rgba(8,16,34,0.88)',
+    base: '#c9dcff',
+    mid: '#79d9ff',
+    light: '#fff2d9',
+    dark: '#5674c2',
+    accent: 'rgba(148,221,255,0.96)',
+    ring: 'rgba(148,221,255,0.96)',
+    mark: 'rgba(34,49,84,0.82)',
   },
   {
-    base: '#dff5ff',
-    mid: '#f7ffff',
-    light: '#ffffff',
-    dark: '#263146',
-    accent: 'rgba(214,246,255,0.98)',
-    ring: 'rgba(214,246,255,0.94)',
-    mark: 'rgba(22,31,42,0.86)',
+    base: '#f1f6ff',
+    mid: '#dff7ff',
+    light: '#fffaf1',
+    dark: '#b6c3db',
+    accent: 'rgba(241,250,255,0.98)',
+    ring: 'rgba(224,244,255,0.94)',
+    mark: 'rgba(58,67,82,0.78)',
   },
   {
-    base: '#162a1b',
-    mid: '#8ce45f',
-    light: '#c8ff9e',
-    dark: '#07110a',
-    accent: 'rgba(142,228,95,0.96)',
-    ring: 'rgba(142,228,95,0.94)',
-    mark: 'rgba(8,20,10,0.86)',
+    base: '#d8efb7',
+    mid: '#8ddd67',
+    light: '#fff1b9',
+    dark: '#4da35b',
+    accent: 'rgba(179,236,135,0.96)',
+    ring: 'rgba(179,236,135,0.94)',
+    mark: 'rgba(34,66,39,0.8)',
   },
   {
-    base: '#6c321c',
-    mid: '#ff9b4d',
-    light: '#ffd47b',
-    dark: '#140908',
-    accent: 'rgba(255,155,77,0.96)',
-    ring: 'rgba(255,170,84,0.94)',
-    mark: 'rgba(24,10,6,0.86)',
+    base: '#ffd8bf',
+    mid: '#ffb286',
+    light: '#fff0bf',
+    dark: '#ff8c6a',
+    accent: 'rgba(255,194,137,0.96)',
+    ring: 'rgba(255,194,137,0.94)',
+    mark: 'rgba(96,52,34,0.8)',
   },
   {
-    base: '#35155c',
-    mid: '#df4ee5',
-    light: '#ff91f4',
-    dark: '#080414',
-    accent: 'rgba(223,78,229,0.96)',
-    ring: 'rgba(236,92,232,0.94)',
-    mark: 'rgba(18,6,26,0.86)',
+    base: '#e9d6ff',
+    mid: '#c89cff',
+    light: '#fff0ff',
+    dark: '#9b7ce8',
+    accent: 'rgba(215,169,255,0.96)',
+    ring: 'rgba(215,169,255,0.94)',
+    mark: 'rgba(64,43,98,0.8)',
   },
 ] as const;
 
@@ -334,7 +334,7 @@ const ProjectCards = () => {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
-        <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 border-b-0 rounded-full bg-[rgba(10,16,19,0.62)] border-[1px] border-white/10 px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-[28px]">
+        <div className="pointer-events-auto flex max-w-[880px] items-center justify-between gap-3 rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(29,42,49,0.5),rgba(15,24,31,0.34))] px-4 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-[28px]">
           <div className="flex min-w-0 flex-1 items-center justify-center gap-2 sm:gap-3">
             {showcaseProjects.map((item, index) => {
               const palette =
@@ -384,6 +384,10 @@ const ProjectCards = () => {
                         '--project-mercury-dark': palette.dark,
                         '--project-mercury-accent': palette.accent,
                         '--project-mercury-mark': palette.mark,
+                        boxShadow:
+                          index === active
+                            ? `0 0 34px ${palette.ring.replace('0.94', '0.28')}`
+                            : `0 10px 26px ${palette.ring.replace('0.94', '0.12')}`,
                       } as CSSProperties
                     }
                   >
@@ -397,8 +401,8 @@ const ProjectCards = () => {
                     <span
                       className={`absolute inset-0 transition-all duration-300 ${
                         index === active
-                          ? 'bg-[radial-gradient(circle_at_42%_28%,rgba(255,255,255,0.18),transparent_30%)]'
-                          : 'bg-black/18'
+                          ? 'bg-[radial-gradient(circle_at_42%_28%,rgba(255,255,255,0.08),transparent_28%)]'
+                          : 'bg-[radial-gradient(circle_at_36%_24%,rgba(255,255,255,0.06),transparent_32%)]'
                       }`}
                     />
                   </span>

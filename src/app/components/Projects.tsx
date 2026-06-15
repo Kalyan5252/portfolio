@@ -49,7 +49,7 @@ const Projects = () => {
       className="relative isolate h-screen overflow-hidden px-6 py-8 text-white md:px-10 lg:px-14"
     >
       <div className="absolute inset-0 -z-30 bg-[#050b10]" />
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_bottom,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
       <div className="absolute inset-0 -z-10 opacity-40 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:120px_120px] [mask-image:radial-gradient(circle_at_center,white_10%,transparent_78%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-[-2.5rem] -z-10 h-32 skills-projects-bridge blur-3xl" />
 
