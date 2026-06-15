@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ContactSection from '../components/ContactSection';
 import Header from '../components/Header';
 import CustomCursor from '../components/CustomCursor';
 import MyWorkShowcase from './MyWorkShowcase';
@@ -13,6 +14,7 @@ export default function MyWorkPage() {
     <main className="min-h-screen overflow-hidden bg-[#04080a] text-white">
       <Header />
       <MyWorkShowcase />
+      <ContactSection />
       <CustomCursor />
     </main>
   );
