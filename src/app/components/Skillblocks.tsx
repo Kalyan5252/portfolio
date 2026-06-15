@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { SKILLS } from '../constants';
 
@@ -8,6 +8,34 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const exitingRef = useRef<HTMLDivElement>(null);
   const [start, setStart] = useState(true);
+  const orbitLayouts = [
+    {
+      paths: [
+        'M -6 180 C 110 72, 280 12, 462 56 C 662 104, 856 208, 1032 356',
+        'M 158 392 C 268 254, 430 182, 594 212 C 742 238, 882 318, 980 456',
+      ],
+    },
+    {
+      paths: [
+        'M 44 116 C 194 44, 386 46, 562 118 C 738 190, 892 318, 1012 474',
+        'M 206 362 C 312 252, 448 218, 592 238 C 742 260, 856 346, 944 474',
+      ],
+    },
+  ];
+  const activeOrbit = orbitLayouts[activeIndex] ?? orbitLayouts[0];
+  const particleSeeds = useMemo(
+    () =>
+      Array.from({ length: 24 }, (_, index) => ({
+        id: index,
+        top: `${8 + ((index * 37) % 78)}%`,
+        left: `${4 + ((index * 29) % 92)}%`,
+        size: `${index % 3 === 0 ? 2 : 1}px`,
+        delay: `${(index % 9) * 0.6}s`,
+        duration: `${7 + (index % 5) * 1.8}s`,
+        opacity: 0.18 + (index % 4) * 0.08,
+      })),
+    [],
+  );
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -89,6 +117,49 @@ const Skillblocks = ({ activeIndex }: { activeIndex: number }) => {
     <div
       className={`relative h-80 flex flex-wrap gap-5 ${divLayouts[activeIndex].main} justify-center items-center `}
     >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="skill-starfield">
+          {particleSeeds.map((particle) => (
+            <span
+              key={particle.id}
+              className="skill-star"
+              style={{
+                top: particle.top,
+                left: particle.left,
+                width: particle.size,
+                height: particle.size,
+                animationDelay: particle.delay,
+                animationDuration: particle.duration,
+                opacity: particle.opacity,
+              }}
+            />
+          ))}
+        </div>
+
+        <svg
+          className="skill-orbits"
+          viewBox="0 0 1024 520"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {activeOrbit.paths.map((path, index) => (
+            <g key={path}>
+              <path id={`skill-orbit-path-${index}`} d={path} className="skill-orbit-path" />
+              <circle r={index === 0 ? 3.2 : 2.2} className="skill-orbit-particle">
+                <animateMotion
+                  dur={index === 0 ? '11s' : '9s'}
+                  repeatCount="indefinite"
+                  rotate="auto"
+                  begin={`${index * 1.2}s`}
+                >
+                  <mpath href={`#skill-orbit-path-${index}`} />
+                </animateMotion>
+              </circle>
+            </g>
+          ))}
+        </svg>
+      </div>
+
       {/* Exiting Skills */}
       <div
         ref={exitingRef}

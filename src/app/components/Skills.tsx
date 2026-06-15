@@ -9,6 +9,8 @@ const Skills = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const skilldivRef = useRef<HTMLDivElement>(null);
   const skillsSectionRef = useRef<HTMLDivElement>(null);
+  const hasAnimatedTitleRef = useRef(false);
+  const hasAnimatedSkillsRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isStart, setIsStart] = useState(true);
 
@@ -70,7 +72,12 @@ const Skills = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting || hasAnimatedTitleRef.current) return;
+
+        hasAnimatedTitleRef.current = true;
+        observer.disconnect();
+
+        if (headRef.current) {
           gsap.fromTo(
             headRef.current,
             { opacity: 0, letterSpacing: '-0.2em' },
@@ -83,7 +90,7 @@ const Skills = () => {
           );
         }
       },
-      { threshold: 0.3 }, // Trigger animation when 30% of the section is visible
+      { threshold: 0.3 },
     );
 
     if (sectionRef.current) {
@@ -96,7 +103,12 @@ const Skills = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (!entry.isIntersecting || hasAnimatedSkillsRef.current) return;
+
+        hasAnimatedSkillsRef.current = true;
+        observer.disconnect();
+
+        if (skillsSectionRef.current) {
           gsap.fromTo(
             skillsSectionRef.current,
             { opacity: 0, scale: 0.9 },
@@ -116,6 +128,8 @@ const Skills = () => {
     if (skillsSectionRef.current) {
       observer.observe(skillsSectionRef.current);
     }
+
+    return () => observer.disconnect();
   }, []);
 
   return (

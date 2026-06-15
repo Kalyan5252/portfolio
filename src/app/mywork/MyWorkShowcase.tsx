@@ -23,6 +23,13 @@ type WorkCard = {
   Icon: typeof Activity;
 };
 
+type ArchiveWork = {
+  id: string;
+  image: string;
+  position: string;
+  accent: string;
+};
+
 const works: WorkCard[] = [
   {
     id: 'ssit',
@@ -62,6 +69,33 @@ const works: WorkCard[] = [
     position: 'work-card--bottom',
     accent: '#d8ff57',
     Icon: Dna,
+  },
+];
+
+const archiveWorks: ArchiveWork[] = [
+  {
+    id: 'archive-chip',
+    image: '/images/projects/project_1/image1.png',
+    position: 'work-archive--top-left',
+    accent: '#84d9ff',
+  },
+  {
+    id: 'archive-dashboard',
+    image: '/images/projects/project_2/cars_3.png',
+    position: 'work-archive--bottom-left',
+    accent: '#c9f0db',
+  },
+  {
+    id: 'archive-plant',
+    image: '/images/projects/plant_health.png',
+    position: 'work-archive--top-right',
+    accent: '#9ae4b1',
+  },
+  {
+    id: 'archive-cars',
+    image: '/images/projects/project_2/cars_7.png',
+    position: 'work-archive--bottom-right',
+    accent: '#b6c8ff',
   },
 ];
 
@@ -214,11 +248,34 @@ function WorkCardView({ item }: { item: WorkCard }) {
   );
 }
 
+function ArchiveWorkFrame({ item }: { item: ArchiveWork }) {
+  return (
+    <div
+      className={`work-archive-frame ${item.position}`}
+      style={{ '--archive-accent': item.accent } as CSSProperties}
+      aria-hidden="true"
+    >
+      <div className="work-archive-frame__media">
+        <Image
+          src={item.image}
+          alt=""
+          fill
+          sizes="(max-width: 900px) 0px, 22vw"
+        />
+      </div>
+      <div className="work-archive-frame__shade" />
+    </div>
+  );
+}
+
 export default function MyWorkShowcase() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <section id="my-work" className="work-showcase h-screen">
+    <section
+      id="my-work"
+      className="work-showcase h-screen overflow-hidden pt-10"
+    >
       <div className="absolute top-0 h-10 w-full worksdispersion blur-3xl"></div>
       <div className="absolute inset-0 -z-30 bg-[#0a1418f7]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
@@ -234,9 +291,16 @@ export default function MyWorkShowcase() {
         animate="show"
         className="work-showcase__stage"
       >
-        <motion.div variants={titleVariants} className="work-showcase__title">
+        <motion.div
+          variants={titleVariants}
+          className="work-showcase__title my-4"
+        >
           <h2>My Works</h2>
         </motion.div>
+
+        {archiveWorks.map((item) => (
+          <ArchiveWorkFrame key={item.id} item={item} />
+        ))}
 
         {works.map((item) => (
           <WorkCardView key={item.id} item={item} />
