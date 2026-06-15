@@ -1146,6 +1146,22 @@ body {
   /* filter: blur(10px); */
 }
 
+.skills-projects-bridge {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(124, 222, 204, 0.14) 0%,
+      rgba(71, 138, 145, 0.09) 34%,
+      rgba(0, 0, 0, 0) 72%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(11, 21, 27, 0.92) 0%,
+      rgba(10, 18, 24, 0.62) 42%,
+      rgba(6, 11, 16, 0) 100%
+    );
+}
+
 .worksdispersion {
   background: linear-gradient(
     0deg,

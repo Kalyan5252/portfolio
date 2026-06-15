@@ -51,6 +51,7 @@ const Projects = () => {
       <div className="absolute inset-0 -z-30 bg-[#050b10]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
       <div className="absolute inset-0 -z-10 opacity-40 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:120px_120px] [mask-image:radial-gradient(circle_at_center,white_10%,transparent_78%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-[-2.5rem] -z-10 h-32 skills-projects-bridge blur-3xl" />
 
       <div className="pointer-events-none absolute left-1/2 top-28 -z-10 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[#7fd8b4]/15 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-12 right-[-5rem] -z-10 h-[20rem] w-[20rem] rounded-full bg-[#1f7295]/10 blur-[140px]" />
