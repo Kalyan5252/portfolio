@@ -37,9 +37,9 @@ const LAPTOP_START_ROTATION = {
   y: 0,
   z: LAPTOP_FINAL_ROTATION.z,
 };
-const SPHERE_ORBIT_START_TIME = 6.35;
-const TOP_SPHERE_ORBIT_CENTER = { x: 2.18, y: 1.18, z: -0.24 };
-const BOTTOM_SPHERE_ORBIT_CENTER = { x: 2.16, y: -1.92, z: 0.1 };
+const SPHERE_ANIMATION_DELAY = 0.85;
+const LOWER_SPHERE_SPEED = 0.032;
+const UPPER_SPHERE_SPEED = 0.05;
 
 // Define the custom Glow Shader Material
 const GlowShaderMaterial = shaderMaterial(
@@ -88,118 +88,70 @@ declare module '@react-three/fiber' {
   }
 }
 function GlowingSphere() {
-  const sphereRef = useRef<Mesh>(null);
+  const sphereRef = useRef<Group>(null);
   const lowersphereRef = useRef<Mesh>(null);
   const topLight = useRef<PointLight>(null);
   const lowerLight = useRef<PointLight>(null);
-  const lowerProgressRef = useRef({ value: 0 });
-  const upperProgressRef = useRef({ value: 0 });
-  const lowerPathCompleteRef = useRef(false);
-  const upperPathCompleteRef = useRef(false);
-  const lowerPath = useMemo(
-    () =>
-      new CatmullRomCurve3([
-        new Vector3(5.28, -4.12, 1.24),
-        new Vector3(4.22, -3.08, 1.05),
-        new Vector3(3.1, -2.34, 1.24),
-        new Vector3(1.62, -2.05, 1.02),
-        new Vector3(0.88, -2.28, -0.32),
-        new Vector3(2.02, -2.06, -1.08),
-        new Vector3(3.4, -1.92, -0.72),
-      ]),
-    [],
-  );
-  const upperPath = useMemo(
-    () =>
-      new CatmullRomCurve3([
-        new Vector3(4.82, -3.38, 1.16),
-        new Vector3(4.54, -1.18, 0.82),
-        new Vector3(3.66, 0.68, -1.04),
-        new Vector3(2.14, 1.42, -1.32),
-        new Vector3(0.88, 1.22, -0.28),
-        new Vector3(1.58, 2.58, 0.32),
-      ]),
-    [],
-  );
+  const lowerPath = useMemo(() => {
+    const curve = new CatmullRomCurve3([
+      new Vector3(-1.2, -4.25, 0.96),
+      new Vector3(0.1, -3.85, 0.88),
+      new Vector3(1.35, -3.42, 0.74),
+      new Vector3(2.55, -3.06, 0.42),
+      new Vector3(3.2, -2.7, 0.05),
+      new Vector3(2.7, -2.32, -0.34),
+      new Vector3(1.45, -2.02, -0.72),
+      new Vector3(0.0, -2.18, -0.82),
+      new Vector3(-0.98, -2.72, -0.22),
+    ]);
+    curve.closed = true;
+    curve.curveType = 'catmullrom';
+    curve.tension = 0.2;
+    return curve;
+  }, []);
+  const upperPath = useMemo(() => {
+    const curve = new CatmullRomCurve3([
+      new Vector3(2.18, 4.55, 1.12),
+      new Vector3(2.22, 3.45, 1.08),
+      new Vector3(2.28, 2.48, 1.02),
+      new Vector3(2.46, 1.68, 0.94),
+      new Vector3(2.92, 1.34, 1.02),
+      new Vector3(3.58, 1.58, 1.18),
+      new Vector3(4.05, 2.18, 1.28),
+      new Vector3(3.72, 2.82, 1.34),
+      new Vector3(2.92, 3.18, 1.28),
+      new Vector3(2.36, 3.6, 1.18),
+    ]);
+    curve.closed = true;
+    curve.curveType = 'catmullrom';
+    curve.tension = 0.18;
+    return curve;
+  }, []);
 
   useEffect(() => {
-    const lowerStart = lowerPath.getPoint(0);
-    const upperStart = upperPath.getPoint(0);
+    const lowerStart = lowerPath.getPointAt(0);
+    const upperStart = upperPath.getPointAt(0);
     lowersphereRef.current?.position.copy(lowerStart);
     lowerLight.current?.position.copy(lowerStart);
     sphereRef.current?.position.copy(upperStart);
     topLight.current?.position.copy(upperStart);
-
-    const timeline = gsap.timeline({ delay: 3.55 });
-
-    timeline
-      .to(
-        lowerProgressRef.current,
-        {
-          value: 1,
-          duration: 2.55,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            lowerPathCompleteRef.current = true;
-          },
-        },
-        0,
-      )
-      .to(
-        upperProgressRef.current,
-        {
-          value: 1,
-          duration: 2.35,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            upperPathCompleteRef.current = true;
-          },
-        },
-        0.18,
-      );
-
-    return () => {
-      timeline.kill();
-    };
   }, [lowerPath, upperPath]);
 
   useFrame(({ clock }) => {
-    const elapsed = clock.elapsedTime;
+    const elapsed = Math.max(0, clock.elapsedTime - SPHERE_ANIMATION_DELAY);
 
     if (lowersphereRef.current && lowerLight.current) {
-      if (lowerPathCompleteRef.current && elapsed >= SPHERE_ORBIT_START_TIME) {
-        const t = elapsed - SPHERE_ORBIT_START_TIME;
-        const x = BOTTOM_SPHERE_ORBIT_CENTER.x + Math.cos(t * 0.68) * 1.2;
-        const y =
-          BOTTOM_SPHERE_ORBIT_CENTER.y + Math.sin(t * 0.84) * 0.18;
-        const z = BOTTOM_SPHERE_ORBIT_CENTER.z + Math.sin(t * 0.68) * 1.04;
-        lowersphereRef.current.position.set(x, y, z);
-      } else {
-        lowersphereRef.current.position.copy(
-          lowerPath.getPoint(lowerProgressRef.current.value),
-        );
-      }
-
-      lowerLight.current.position.copy(lowersphereRef.current.position);
+      const lowerProgress = (elapsed * LOWER_SPHERE_SPEED) % 1;
+      const lowerPosition = lowerPath.getPointAt(lowerProgress);
+      lowersphereRef.current.position.copy(lowerPosition);
+      lowerLight.current.position.copy(lowerPosition);
     }
 
     if (sphereRef.current && topLight.current) {
-      if (upperPathCompleteRef.current && elapsed >= SPHERE_ORBIT_START_TIME) {
-        const t = elapsed - SPHERE_ORBIT_START_TIME;
-        const x =
-          TOP_SPHERE_ORBIT_CENTER.x + Math.cos(t * 0.56 + Math.PI) * 1.02;
-        const y =
-          TOP_SPHERE_ORBIT_CENTER.y + Math.sin(t * 0.76 + Math.PI / 3) * 0.34;
-        const z =
-          TOP_SPHERE_ORBIT_CENTER.z + Math.sin(t * 0.56 + Math.PI) * 0.94;
-        sphereRef.current.position.set(x, y, z);
-      } else {
-        sphereRef.current.position.copy(
-          upperPath.getPoint(upperProgressRef.current.value),
-        );
-      }
-
-      topLight.current.position.copy(sphereRef.current.position);
+      const upperProgress = (elapsed * UPPER_SPHERE_SPEED) % 1;
+      const upperPosition = upperPath.getPointAt(upperProgress);
+      sphereRef.current.position.copy(upperPosition);
+      topLight.current.position.copy(upperPosition);
     }
   });
 
@@ -232,21 +184,29 @@ function GlowingSphere() {
         /> */}
       </mesh>
 
-      <mesh ref={sphereRef} position={[4.82, -3.38, 1.16]}>
-        <sphereGeometry args={[0.2, 32, 32]} />
-        <meshStandardMaterial
-          color={new Color('#192e35')}
-          emissive={new Color('#192e35')}
-          emissiveIntensity={20}
-        />
-      </mesh>
+      <group ref={sphereRef} position={[2.18, 4.55, 1.12]}>
+        <mesh>
+          <sphereGeometry args={[0.3, 32, 32]} />
+          <meshStandardMaterial
+            color={new Color('#fff')}
+            roughness={0}
+            metalness={0}
+            emissive={new Color('#23a6d5')}
+            emissiveIntensity={10.08}
+            envMapIntensity={50}
+            blending={AdditiveBlending}
+            vertexColors={true}
+          />
+        </mesh>
+      </group>
 
       {/* Light Source */}
       <pointLight
         ref={topLight}
         position={[4.82, -3.38, 1.16]}
-        intensity={8}
-        distance={3}
+        intensity={9}
+        distance={4.2}
+        decay={1.5}
         color={'#23a6d5'}
       />
       <pointLight
@@ -400,14 +360,7 @@ function HeroScene() {
     >
       <ambientLight intensity={1} />
       <ambientLight intensity={0.5} />
-      {/* <directionalLight
-        ref={lightRef}
-        position={[5, 5, 5]}
-        castShadow
-        intensity={1}
-        shadow-mapSize-width={4096}
-        shadow-mapSize-height={4096}
-      /> */}
+
       <spotLight position={[-2, 4, 0]} intensity={2} />
 
       <pointLight position={[10, 10, 10]} />
@@ -415,46 +368,19 @@ function HeroScene() {
         <Model />
         <GlowingSphere />
       </group>
-      <pointLight
-        position={[20, 10, 10]}
-        color={new Color('blue')}
-        // shadow-mapSize-width={1024}
-        // shadow-mapSize-height={1024}
-      />
-
-      {/* TRY Shadow Material NEEDS FIX */}
-      {/* <mesh rotation={[-2, 0, -2]} position={[0, -1.7, 0]} receiveShadow>
-        <planeGeometry args={[10, 10]} />
-        <shadowMaterial opacity={0.5} />
-        <meshStandardMaterial
-          color={new Color('#fff')} // Set the base color
-        />
-      </mesh> */}
+      <pointLight position={[20, 10, 10]} color={new Color('blue')} />
 
       <Plane />
 
       <EffectComposer>
         <Bloom
-          luminanceThreshold={0}
-          luminanceSmoothing={0.1}
-          intensity={0.5}
+          luminanceThreshold={0.24}
+          luminanceSmoothing={0.34}
+          intensity={0.12}
         />
       </EffectComposer>
-      {/* <OrbitControls /> */}
     </Canvas>
-    // </div>
   );
 }
-
-function TrialOnCube() {
-  return (
-    <mesh position={[0, 1, 0]} castShadow>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="blue" />
-    </mesh>
-  );
-}
-
-// export default Scene;
 
 export default HeroScene;
