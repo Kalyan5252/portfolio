@@ -7,6 +7,21 @@ import ProjectCards from './ProjectCards';
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const [isCompactViewport, setIsCompactViewport] = React.useState(false);
+  const [isSectionActive, setIsSectionActive] = React.useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1279px)');
+
+    const syncViewport = () => {
+      setIsCompactViewport(mediaQuery.matches);
+    };
+
+    syncViewport();
+    mediaQuery.addEventListener('change', syncViewport);
+
+    return () => mediaQuery.removeEventListener('change', syncViewport);
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -33,6 +48,21 @@ const Projects = () => {
 
         observer.disconnect();
         return () => ctx.revert();
+      },
+      { threshold: 0.2 },
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsSectionActive(entry.isIntersecting);
       },
       { threshold: 0.2 },
     );
@@ -109,7 +139,9 @@ const Projects = () => {
         </div>
       </div>
 
-      <ProjectCards />
+      <ProjectCards
+        compactNavActive={isCompactViewport && isSectionActive}
+      />
       <div className="absolute bottom-0 h-10 w-full projectsdispersion blur-3xl"></div>
     </section>
   );

@@ -66,7 +66,11 @@ const getProjectMark = (title: string) =>
     .join('')
     .toUpperCase();
 
-const ProjectCards = () => {
+const ProjectCards = ({
+  compactNavActive = false,
+}: {
+  compactNavActive?: boolean;
+}) => {
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
   const progressStartRef = useRef<number>(Date.now());
@@ -234,8 +238,8 @@ const ProjectCards = () => {
                     <span className="explore-project-btn-fill explore-project-btn-fill-green" />
 
                     <span className="relative z-10 flex w-full items-center justify-center">
-                      <span className="mt-2 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
-                        <span>Explore</span>
+                      <span className="mt-2 lg:mb-0 ml-2 explore-project-btn-copy explore-project-btn-copy-base flex items-center justify-center gap-2 text-[1.3rem] font-semibold tracking-[-0.03em] text-white">
+                        <span className="mb-2 lg:mb-0">Explore</span>
                         <Image
                           src="/icons/Arrow Up Right Icon.svg"
                           alt=""
@@ -333,8 +337,14 @@ const ProjectCards = () => {
         </div>
       </div>
 
-      <div className="pointer-events-none mt-6 flex justify-center px-1 sm:px-4 xl:absolute xl:inset-x-0 xl:bottom-0 xl:mt-0">
-        <div className="pointer-events-auto w-full max-w-[880px] overflow-x-auto rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(29,42,49,0.5),rgba(15,24,31,0.34))] px-3 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-[28px] sm:px-4">
+      <div
+        className={`pointer-events-none z-30 flex justify-center w-fit justify-self-center px-1 sm:px-4 ${
+          compactNavActive
+            ? 'fixed inset-x-0 bottom-4 mt-0'
+            : 'mt-6 xl:absolute xl:inset-x-0 xl:bottom-0 xl:mt-0'
+        }`}
+      >
+        <div className="pointer-events-auto w-full max-w-[880px] overflow-y-visible rounded-full border border-white/14 bg-[linear-gradient(180deg,rgba(29,42,49,0.5),rgba(15,24,31,0.34))] px-3 py-3 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-[28px] sm:px-4">
           <div className="mx-auto flex min-w-max items-center justify-start gap-2 sm:justify-center sm:gap-3">
             {showcaseProjects.map((item, index) => {
               const palette =
