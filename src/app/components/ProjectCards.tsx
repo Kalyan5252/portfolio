@@ -132,9 +132,9 @@ const ProjectCards = ({
   }, []);
 
   return (
-    <div className="relative mt-6 min-h-[72rem] pb-8 sm:min-h-[76rem] lg:min-h-[82rem] xl:h-[calc(100vh-13rem)] xl:min-h-0 xl:pb-28">
-      <div className="grid h-full min-h-0 gap-5 xl:grid-cols-[1.15fr_0.85fr] xl:gap-6">
-        <div className="relative min-h-[21rem] overflow-hidden rounded-xl px-3 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:min-h-[24rem] sm:px-4 sm:py-5 md:min-h-[30rem] md:px-6 xl:min-h-0">
+    <div className="relative mx-auto mt-6 min-h-[72rem] w-full max-w-7xl pb-8 sm:min-h-[76rem] lg:min-h-[82rem] xl:h-[min(42rem,calc(100svh-13rem))] xl:min-h-0 xl:pb-24">
+      <div className="grid h-full min-h-0 gap-5 xl:grid-cols-[1.08fr_0.92fr] xl:gap-5">
+        <div className="relative min-h-[21rem] overflow-hidden rounded-xl px-3 py-4 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:min-h-[24rem] sm:px-4 sm:py-5 md:min-h-[30rem] md:px-6 xl:min-h-0 xl:px-4 xl:py-4">
           <div className="project-stage-atmosphere absolute inset-0" />
           <div className="project-stage-glow project-stage-glow-one absolute" />
           <div className="project-stage-glow project-stage-glow-two absolute" />
@@ -154,9 +154,9 @@ const ProjectCards = ({
                       ),
                     )
                   }
-                  className="absolute top-1/2 hidden h-[78%] w-[32%] max-w-[280px] -translate-y-1/2 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02] p-3 text-left backdrop-blur-lg lg:block"
+                  className="absolute top-1/2 hidden h-[72%] w-[30%] max-w-[230px] -translate-y-1/2 overflow-hidden rounded-xl border border-white/8 bg-white/[0.02] p-3 text-left backdrop-blur-lg lg:block"
                   animate={{
-                    x: item.offset * 180,
+                    x: item.offset * 150,
                     rotateY: item.offset * -24,
                     scale: 1 - Math.abs(item.offset) * 0.12,
                     opacity: 0.3,
@@ -185,7 +185,7 @@ const ProjectCards = ({
               initial={{ opacity: 0.6, scale: 0.97, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 flex h-[82%] w-full max-w-[560px] flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b151b]/88 p-3 shadow-[0_24px_60px_rgba(0,0,0,0.34)] sm:p-4"
+              className="relative z-10 flex h-[78%] w-full max-w-[480px] flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b151b]/88 p-3 shadow-[0_24px_60px_rgba(0,0,0,0.34)] sm:p-4"
             >
               <div className="relative flex-1 overflow-hidden rounded-xl">
                 <Image
@@ -199,7 +199,7 @@ const ProjectCards = ({
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_38%,rgba(6,10,14,0.72)_100%)]" />
                 <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 sm:inset-x-5 sm:bottom-5">
                   <div>
-                    <h3 className="mt-2 text-2xl font-bold tracking-[-0.03em] text-white sm:text-3xl lg:text-4xl">
+                    <h3 className="mt-2 text-2xl font-bold tracking-[-0.03em] text-white sm:text-3xl lg:text-4xl xl:text-3xl">
                       {project.title}
                     </h3>
                   </div>
@@ -216,11 +216,11 @@ const ProjectCards = ({
 
           <div className="relative grid h-full grid-rows-[auto_1fr_auto]">
             <div className="grid grid-cols-1 border-b border-white/10 sm:grid-cols-[3fr_1fr]">
-              <div className="px-5 py-5 sm:px-8 sm:py-7">
+              <div className="px-5 py-5 sm:px-8 sm:py-7 xl:px-6 xl:py-5">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                   Project Overview
                 </p>
-                <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl">
+                <h3 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-4xl xl:text-3xl">
                   {project.title}
                 </h3>
                 <p className="mt-3 text-sm uppercase tracking-[0.26em] text-white/46">
@@ -231,7 +231,7 @@ const ProjectCards = ({
                 {project.href && !project.disabled ? (
                   <Link
                     href={project.href}
-                    className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-5 py-5 text-left sm:px-8 sm:py-7"
+                    className="explore-project-btn group relative flex h-full w-full items-center overflow-hidden px-5 py-5 text-left sm:px-8 sm:py-7 xl:px-6 xl:py-5"
                     aria-label={`Explore ${project.title}`}
                   >
                     <span className="explore-project-btn-fill explore-project-btn-fill-white" />
@@ -266,7 +266,7 @@ const ProjectCards = ({
                 ) : (
                   <div
                     aria-disabled="true"
-                    className="explore-project-btn-disabled relative flex h-full w-full items-center justify-center px-8 py-7 text-center"
+                  className="explore-project-btn-disabled relative flex h-full w-full items-center justify-center px-8 py-7 text-center xl:px-6 xl:py-5"
                   >
                     <span className="flex items-center gap-2 text-[1.1rem] font-semibold tracking-[-0.03em] text-white/42">
                       <span>Explore</span>
@@ -286,11 +286,11 @@ const ProjectCards = ({
 
             <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
               <div className="border-b border-white/10 lg:border-r lg:border-b-0">
-                <div className="px-5 py-5 sm:px-8">
+                <div className="px-5 py-5 sm:px-8 xl:px-6 xl:py-5">
                   <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                     Case Study
                   </p>
-                  <p className="text-sm leading-8 text-white/70 mt-3">
+                  <p className="text-sm leading-8 text-white/70 mt-3 xl:leading-7">
                     {project.narrative}
                   </p>
                 </div>
@@ -299,18 +299,18 @@ const ProjectCards = ({
               <div>
                 <div className="grid h-full grid-rows-2">
                   <div className="border-b border-white/10">
-                    <div className="px-5 py-5 sm:px-8">
+                    <div className="px-5 py-5 sm:px-8 xl:px-6 xl:py-5">
                       <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                         Outcome
                       </p>
-                      <p className="max-w-[20rem] text-sm leading-8 text-white/70">
+                      <p className="max-w-[20rem] text-sm leading-8 text-white/70 xl:leading-7">
                         {project.outcome}
                       </p>
                     </div>
                   </div>
 
                   <div>
-                    <div className="px-5 py-5 sm:px-8">
+                    <div className="px-5 py-5 sm:px-8 xl:px-6 xl:py-5">
                       <p className="text-[10px] tracking-[0.34em] text-white/36">
                         Category
                       </p>
@@ -324,11 +324,11 @@ const ProjectCards = ({
             </div>
 
             <div className="border-t border-white/10">
-              <div className="border-b border-white/10 px-5 py-5 sm:px-8">
+              <div className="border-b border-white/10 px-5 py-5 sm:px-8 xl:px-6 xl:py-5">
                 <p className="text-[10px] uppercase tracking-[0.34em] text-white/36">
                   Summary
                 </p>
-                <p className="max-w-[42rem] text-[1.02rem] leading-8 text-white/72">
+                <p className="max-w-[42rem] text-[1.02rem] leading-8 text-white/72 xl:text-sm xl:leading-7">
                   {project.summary}
                 </p>
               </div>

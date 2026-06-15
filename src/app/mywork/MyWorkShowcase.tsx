@@ -10,6 +10,7 @@ import {
   MapPinned,
   ShieldCheck,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import type { CSSProperties, MouseEvent } from 'react';
 
 type WorkCard = {
@@ -200,7 +201,13 @@ function HealthcareVisual() {
   );
 }
 
-function WorkCardView({ item }: { item: WorkCard }) {
+function WorkCardView({
+  item,
+  interactive,
+}: {
+  item: WorkCard;
+  interactive: boolean;
+}) {
   const Icon = item.Icon;
   const isGoingToPlaces = item.id === 'going';
 
@@ -210,10 +217,10 @@ function WorkCardView({ item }: { item: WorkCard }) {
       variants={cardVariants}
       className={`work-glass-card ${item.position}`}
       style={{ '--work-accent': item.accent } as CSSProperties}
-      onMouseMove={handleCardMove}
-      onMouseLeave={resetCardMove}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.28, ease: 'easeOut' }}
+      onMouseMove={interactive ? handleCardMove : undefined}
+      onMouseLeave={interactive ? resetCardMove : undefined}
+      whileHover={interactive ? { y: -6 } : undefined}
+      transition={interactive ? { duration: 0.28, ease: 'easeOut' } : undefined}
     >
       <div className="work-card__inner">
         <div className="work-card__media">
@@ -289,6 +296,31 @@ function ArchiveWorkFrame({ item }: { item: ArchiveWork }) {
 
 export default function MyWorkShowcase() {
   const reducedMotion = useReducedMotion();
+  const [isCompactViewport, setIsCompactViewport] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    const compactQuery = window.matchMedia('(max-width: 1279px)');
+    const hoverQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    const syncEnvironment = () => {
+      setIsCompactViewport(compactQuery.matches);
+      setCanHover(hoverQuery.matches);
+    };
+
+    syncEnvironment();
+    compactQuery.addEventListener('change', syncEnvironment);
+    hoverQuery.addEventListener('change', syncEnvironment);
+
+    return () => {
+      compactQuery.removeEventListener('change', syncEnvironment);
+      hoverQuery.removeEventListener('change', syncEnvironment);
+    };
+  }, []);
+
+  const interactiveCards = canHover && !reducedMotion && !isCompactViewport;
+  const showAmbientFrames = !isCompactViewport;
+  const showOrbitMotion = !reducedMotion && !isCompactViewport;
 
   return (
     <section
@@ -318,15 +350,20 @@ export default function MyWorkShowcase() {
           <h2>My Works</h2>
         </motion.div>
 
-        {archiveWorks.map((item) => (
-          <ArchiveWorkFrame key={item.id} item={item} />
-        ))}
+        {showAmbientFrames &&
+          archiveWorks.map((item) => (
+            <ArchiveWorkFrame key={item.id} item={item} />
+          ))}
 
         {works.map((item) => (
-          <WorkCardView key={item.id} item={item} />
+          <WorkCardView
+            key={item.id}
+            item={item}
+            interactive={interactiveCards}
+          />
         ))}
 
-        {!reducedMotion && (
+        {showOrbitMotion && (
           <>
             <motion.span
               className="work-orbit work-orbit--one"

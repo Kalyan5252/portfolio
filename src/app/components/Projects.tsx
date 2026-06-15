@@ -86,7 +86,10 @@ const Projects = () => {
       <div className="pointer-events-none absolute left-1/2 top-28 -z-10 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[#7fd8b4]/15 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-12 right-[-5rem] -z-10 h-[20rem] w-[20rem] rounded-full bg-[#1f7295]/10 blur-[140px]" />
 
-      <div ref={headerRef} className="flex flex-col gap-4 opacity-100">
+      <div
+        ref={headerRef}
+        className="mx-auto flex w-full max-w-7xl flex-col gap-4 opacity-100"
+      >
         <span className="w-fit rounded-full px-4 py-1 text-xs uppercase tracking-[0.35em] text-white/60 backdrop-blur-xl">
           My Projects
         </span>
@@ -139,9 +142,7 @@ const Projects = () => {
         </div>
       </div>
 
-      <ProjectCards
-        compactNavActive={isCompactViewport && isSectionActive}
-      />
+      <ProjectCards compactNavActive={isCompactViewport && isSectionActive} />
       <div className="absolute bottom-0 h-10 w-full projectsdispersion blur-3xl"></div>
     </section>
   );
