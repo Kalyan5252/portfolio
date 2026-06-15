@@ -18,13 +18,13 @@ const AnimatedText = () => {
     const screenWidth = window.innerWidth;
     const isCompactScreen = screenWidth < 1024;
 
-    const xValue = isCompactScreen ? 0 : -215;
+    const xValue = isCompactScreen ? 0 : 145;
     const imFinalY = isCompactScreen ? -92 : -150;
     const nameFromY = isCompactScreen ? -56 : -90;
     const nameFinalY = isCompactScreen ? -76 : -120;
-    const titleFromX = isCompactScreen ? 0 : -80;
+    const titleFromX = isCompactScreen ? 0 : 0;
     const titleFromY = isCompactScreen ? -60 : -105;
-    const titleFinalX = isCompactScreen ? 0 : -80;
+    const titleFinalX = isCompactScreen ? 0 : 5;
     const titleFinalY = isCompactScreen ? -70 : -110;
 
     if (heyChars && imChars) {
@@ -69,16 +69,13 @@ const AnimatedText = () => {
 
       gsap.to(imRef.current, {
         y: -50,
-        scale: 1.5,
         delay: 2,
         duration: 0.5,
         ease: 'power2.out',
       });
 
       gsap.to(imRef.current, {
-        x: xValue,
         y: imFinalY,
-        scale: 1.5,
         delay: 3,
         duration: 0.5,
         ease: 'power2.out',
@@ -99,6 +96,7 @@ const AnimatedText = () => {
         },
       );
     }
+
     if (titleChars) {
       gsap.fromTo(
         titleChars,
@@ -122,14 +120,14 @@ const AnimatedText = () => {
         },
       );
     }
-    // if (kalyanRef.current) {
-    //   gsap.to(kalyanRef.current, {
-    //     opacity: 1,
-    //     delay: 8,
-    //     duration: 1,
-    //     y: -80,
-    //   });
-    // }
+    if (kalyanRef.current) {
+      gsap.to(kalyanRef.current, {
+        opacity: 1,
+        delay: 8,
+        duration: 1,
+        y: -80,
+      });
+    }
   }, []);
 
   return (
