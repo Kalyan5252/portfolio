@@ -13,7 +13,7 @@ const contactPills = [
   {
     label: 'Kalyan Pendem',
     icon: 'avatar' as const,
-    href: 'mailto:kalyanpendem007@gmail.com?subject=Project%20Inquiry',
+    href: 'https://www.linkedin.com/in/kalyanpendem/',
   },
   {
     label: 'kalyanpendem007@gmail.com',
@@ -30,25 +30,20 @@ const contactPills = [
     icon: Workflow,
     href: '/#projects',
   },
-  {
-    label: 'Remote Collaboration',
-    icon: MapPin,
-    href: 'mailto:kalyanpendem007@gmail.com?subject=Let%27s%20Collaborate',
-  },
 ];
 
 const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="relative isolate overflow-hidden bg-[#04080a] px-6 pb-24 pt-12 text-white md:px-10 lg:px-14 lg:pb-28"
+      className="relative isolate overflow-hidden bg-[#04080a] px-6 pt-12 text-white md:px-10 lg:px-14"
     >
       <div className="absolute inset-0 -z-30 bg-[linear-gradient(180deg,#04080a_0%,#061018_38%,#04080a_100%)]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_0%,rgba(123,235,197,0.14),transparent_26%),radial-gradient(circle_at_15%_24%,rgba(131,191,255,0.12),transparent_24%),radial-gradient(circle_at_86%_18%,rgba(217,246,255,0.09),transparent_22%),radial-gradient(circle_at_50%_100%,rgba(71,133,170,0.14),transparent_28%)]" />
       <div className="absolute inset-0 -z-10 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[length:110px_110px] [mask-image:radial-gradient(circle_at_center,white_18%,transparent_78%)]" />
 
-      <div className="contact-aurora-shell relative mx-auto max-w-[1280px] rounded-[2rem] border border-white/8 px-5 py-6 shadow-[0_32px_90px_rgba(0,0,0,0.45)] sm:px-7 sm:py-7 lg:px-10 lg:py-10">
-        <div className="contact-aurora-panel relative overflow-hidden rounded-[1.7rem] border border-white/10 px-6 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+      <div className="contact-aurora-shell relative mx-auto max-w-[1280px] rounded-[2rem] border border-white/8 border-b-0 px-5 py-6 shadow-[0_32px_90px_rgba(0,0,0,0.45)] sm:px-7 sm:py-7 lg:px-10 lg:py-10">
+        <div className="contact-aurora-panel relative overflow-hidden rounded-[1.7rem] border border-white/10 border-b-0 px-6 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
           <div className="contact-mist contact-mist--top-left" />
           <div className="contact-mist contact-mist--top-right" />
           <div className="contact-mist contact-mist--bottom-left" />
