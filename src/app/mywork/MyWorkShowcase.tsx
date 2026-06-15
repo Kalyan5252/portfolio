@@ -202,6 +202,7 @@ function HealthcareVisual() {
 
 function WorkCardView({ item }: { item: WorkCard }) {
   const Icon = item.Icon;
+  const isGoingToPlaces = item.id === 'going';
 
   return (
     <motion.article
@@ -230,15 +231,29 @@ function WorkCardView({ item }: { item: WorkCard }) {
         </div>
 
         <div className="work-card__shade" />
-        <div className="work-card__content">
-          <div className="flex items-center justify-between gap-3">
+        <div
+          className={`work-card__content ${
+            isGoingToPlaces ? 'work-card__content--going' : ''
+          }`}
+        >
+          <div
+            className={`flex items-center gap-3 ${
+              isGoingToPlaces ? 'justify-end' : 'justify-between'
+            }`}
+          >
             <span className="work-card__label">{item.label}</span>
-            <span className="work-card__icon">
-              <Icon className="h-4 w-4" strokeWidth={1.8} />
-            </span>
+            {!isGoingToPlaces && (
+              <span className="work-card__icon">
+                <Icon className="h-4 w-4" strokeWidth={1.8} />
+              </span>
+            )}
           </div>
 
-          <div>
+          <div
+            className={`work-card__body ${
+              isGoingToPlaces ? 'work-card__body--going' : ''
+            }`}
+          >
             <h3>{item.title}</h3>
             <p>{item.meta}</p>
           </div>
@@ -249,6 +264,8 @@ function WorkCardView({ item }: { item: WorkCard }) {
 }
 
 function ArchiveWorkFrame({ item }: { item: ArchiveWork }) {
+  const eagerLoad = item.id === 'archive-dashboard';
+
   return (
     <div
       className={`work-archive-frame ${item.position}`}
@@ -261,6 +278,8 @@ function ArchiveWorkFrame({ item }: { item: ArchiveWork }) {
           alt=""
           fill
           sizes="(max-width: 900px) 0px, 22vw"
+          priority={eagerLoad}
+          loading={eagerLoad ? 'eager' : 'lazy'}
         />
       </div>
       <div className="work-archive-frame__shade" />
@@ -276,6 +295,7 @@ export default function MyWorkShowcase() {
       id="my-work"
       className="work-showcase h-screen overflow-hidden pt-10"
     >
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
       <div className="absolute top-0 h-10 w-full worksdispersion blur-3xl"></div>
       <div className="absolute inset-0 -z-30 bg-[#0a1418f7]" />
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />

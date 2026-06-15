@@ -1,0 +1,32 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#081015"/>
+  <rect x="72" y="72" width="1456" height="756" rx="34" fill="#0D1A20" stroke="rgba(255,255,255,0.12)"/>
+  <text x="118" y="170" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="62" font-weight="700">Multi-Agent Orchestrator</text>
+  <text x="118" y="222" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="28">Three specialized agents, shared profile context, and explicit human handoff points.</text>
+  <circle cx="800" cy="456" r="122" fill="#12252E" stroke="#7FD8B4" stroke-width="3"/>
+  <text x="721" y="444" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Profile +</text>
+  <text x="711" y="486" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">LLM Context</text>
+  <rect x="222" y="336" width="274" height="172" rx="28" fill="#10232C" stroke="#6CD6FF" stroke-width="2"/>
+  <text x="266" y="390" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">JobHunter</text>
+  <text x="266" y="432" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Fetches jobs, scores fit,</text>
+  <text x="266" y="462" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">queues eligible applications</text>
+  <rect x="1112" y="256" width="274" height="172" rx="28" fill="#10232C" stroke="#FFD26F" stroke-width="2"/>
+  <text x="1158" y="310" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Application</text>
+  <text x="1158" y="352" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Maps forms, drives browser,</text>
+  <text x="1158" y="382" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">supports preview and submit</text>
+  <rect x="1112" y="500" width="274" height="172" rx="28" fill="#10232C" stroke="#D7A9FF" stroke-width="2"/>
+  <text x="1177" y="554" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Tracker</text>
+  <text x="1158" y="596" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Parses inbox updates and</text>
+  <text x="1158" y="626" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">updates application records</text>
+  <rect x="190" y="594" width="322" height="132" rx="28" fill="#0E1E25" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="236" y="646" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="30" font-weight="700">Human-in-the-loop</text>
+  <text x="236" y="686" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">CAPTCHA, external ATS quirks,</text>
+  <text x="236" y="714" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">missing auth, and validation gaps</text>
+  <path d="M496 422H650" stroke="#6CD6FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M922 396H1112" stroke="#FFD26F" stroke-width="4" stroke-linecap="round"/>
+  <path d="M922 520H1112" stroke="#D7A9FF" stroke-width="4" stroke-linecap="round"/>
+  <path d="M412 594L690 520" stroke="#7FD8B4" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="650" cy="422" r="8" fill="#6CD6FF"/>
+  <circle cx="922" cy="396" r="8" fill="#FFD26F"/>
+  <circle cx="922" cy="520" r="8" fill="#D7A9FF"/>
+</svg>

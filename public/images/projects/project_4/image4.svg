@@ -1,0 +1,37 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#081015"/>
+  <text x="98" y="144" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="62" font-weight="700">Application Execution</text>
+  <text x="98" y="196" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="28">Field extraction, answer mapping, browser automation, preview mode, and explicit submit safeguards.</text>
+  <rect x="96" y="280" width="452" height="454" rx="30" fill="#0D1A20" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="126" y="326" width="392" height="54" rx="14" fill="#11242C"/>
+  <text x="152" y="360" fill="#EAF4F8" font-family="Arial, sans-serif" font-size="24">ATS Form Snapshot</text>
+  <rect x="126" y="420" width="392" height="46" rx="14" fill="#10232C"/>
+  <rect x="126" y="486" width="392" height="46" rx="14" fill="#10232C"/>
+  <rect x="126" y="552" width="392" height="46" rx="14" fill="#10232C"/>
+  <rect x="126" y="618" width="192" height="46" rx="14" fill="#10232C"/>
+  <rect x="338" y="618" width="180" height="46" rx="14" fill="#17333D"/>
+  <text x="154" y="450" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Full name</text>
+  <text x="154" y="516" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">LinkedIn profile</text>
+  <text x="154" y="582" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Cover letter answer</text>
+  <text x="154" y="648" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="20">Resume</text>
+  <text x="386" y="648" fill="#BDF7E1" font-family="Arial, sans-serif" font-size="20">Upload</text>
+  <rect x="650" y="338" width="286" height="148" rx="28" fill="#10232C" stroke="#7FD8B4" stroke-width="2"/>
+  <text x="704" y="398" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Answer Map</text>
+  <text x="694" y="438" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">LLM + resume summary</text>
+  <rect x="650" y="540" width="286" height="148" rx="28" fill="#10232C" stroke="#FFD26F" stroke-width="2"/>
+  <text x="708" y="600" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Validation</text>
+  <text x="694" y="640" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">required fields + safety</text>
+  <rect x="1040" y="280" width="456" height="454" rx="30" fill="#0D1A20" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="1090" y="350" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="40" font-weight="700">Browser Session</text>
+  <text x="1090" y="406" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">Preview mode</text>
+  <text x="1090" y="444" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">Submit mode</text>
+  <text x="1090" y="482" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">CAPTCHA handoff</text>
+  <text x="1090" y="520" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="24">Keep-open debugging</text>
+  <rect x="1090" y="576" width="188" height="56" rx="18" fill="#17333D"/>
+  <text x="1134" y="612" fill="#BDF7E1" font-family="Arial, sans-serif" font-size="24" font-weight="700">Applied</text>
+  <rect x="1292" y="576" width="160" height="56" rx="18" fill="#1F2730"/>
+  <text x="1324" y="612" fill="#FFD26F" font-family="Arial, sans-serif" font-size="24" font-weight="700">Escalate</text>
+  <path d="M548 508H650" stroke="#7FD8B4" stroke-width="4"/>
+  <path d="M936 412H1040" stroke="#7FD8B4" stroke-width="4"/>
+  <path d="M936 614H1040" stroke="#FFD26F" stroke-width="4"/>
+</svg>

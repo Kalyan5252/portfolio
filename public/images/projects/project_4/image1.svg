@@ -1,0 +1,50 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="36" fill="#081015"/>
+  <rect x="40" y="40" width="1520" height="820" rx="30" fill="url(#bg)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="216" cy="180" r="90" fill="#0D1E25" stroke="#7FD8B4" stroke-width="2"/>
+  <circle cx="216" cy="180" r="42" fill="#163543"/>
+  <path d="M190 188C204 162 230 162 244 188" stroke="#BDF7E1" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="202" cy="168" r="7" fill="#BDF7E1"/>
+  <circle cx="230" cy="168" r="7" fill="#BDF7E1"/>
+  <rect x="350" y="118" width="280" height="124" rx="24" fill="#10232C" stroke="#6CD6FF" stroke-width="2"/>
+  <text x="390" y="164" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Discovery</text>
+  <text x="390" y="206" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Adzuna, JSearch, LinkedIn,</text>
+  <text x="390" y="236" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">remote boards and scoring</text>
+  <rect x="350" y="390" width="280" height="124" rx="24" fill="#10232C" stroke="#FFD26F" stroke-width="2"/>
+  <text x="390" y="436" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Apply Queue</text>
+  <text x="390" y="478" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">BullMQ retries, Redis,</text>
+  <text x="390" y="508" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">worker-safe handoff</text>
+  <rect x="800" y="118" width="360" height="124" rx="24" fill="#10232C" stroke="#7FD8B4" stroke-width="2"/>
+  <text x="840" y="164" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Application Agent</text>
+  <text x="840" y="206" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Maps form fields, launches browser,</text>
+  <text x="840" y="236" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">submits or escalates to human</text>
+  <rect x="800" y="390" width="360" height="124" rx="24" fill="#10232C" stroke="#D7A9FF" stroke-width="2"/>
+  <text x="840" y="436" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="34" font-weight="700">Tracker Agent</text>
+  <text x="840" y="478" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">Reads inbox updates and syncs</text>
+  <text x="840" y="508" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="22">application status to Postgres</text>
+  <rect x="1260" y="212" width="186" height="220" rx="26" fill="#0B1920" stroke="#FFFFFF" stroke-opacity="0.14"/>
+  <text x="1301" y="256" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="26" font-weight="700">Outputs</text>
+  <rect x="1290" y="294" width="126" height="30" rx="15" fill="#142A33"/>
+  <text x="1318" y="315" fill="#7FD8B4" font-family="Arial, sans-serif" font-size="18">Applied</text>
+  <rect x="1290" y="338" width="126" height="30" rx="15" fill="#142A33"/>
+  <text x="1311" y="359" fill="#6CD6FF" font-family="Arial, sans-serif" font-size="18">Needs Human</text>
+  <rect x="1290" y="382" width="126" height="30" rx="15" fill="#142A33"/>
+  <text x="1324" y="403" fill="#FFD26F" font-family="Arial, sans-serif" font-size="18">Queued</text>
+  <path d="M306 180H332L350 180" stroke="#7FD8B4" stroke-width="4" stroke-linecap="round"/>
+  <path d="M490 242V320H490C490 347.614 467.614 370 440 370H350" stroke="#6CD6FF" stroke-width="4"/>
+  <path d="M630 180H720C747.614 180 770 202.386 770 230V230" stroke="#6CD6FF" stroke-width="4"/>
+  <path d="M630 452H720C747.614 452 770 429.614 770 402V402" stroke="#FFD26F" stroke-width="4"/>
+  <path d="M1160 180H1220C1247.61 180 1270 202.386 1270 230V230" stroke="#7FD8B4" stroke-width="4"/>
+  <path d="M1160 452H1220C1247.61 452 1270 429.614 1270 402V402" stroke="#D7A9FF" stroke-width="4"/>
+  <text x="148" y="298" fill="#E7F2F6" font-family="Arial, sans-serif" font-size="34" font-weight="700">Candidate Profile</text>
+  <text x="148" y="338" fill="#8196A0" font-family="Arial, sans-serif" font-size="22">Resume, skills, location,</text>
+  <text x="148" y="368" fill="#8196A0" font-family="Arial, sans-serif" font-size="22">auth state and preferences</text>
+  <text x="112" y="718" fill="#EFF7FA" font-family="Arial, sans-serif" font-size="58" font-weight="700">Job Search Agent</text>
+  <text x="112" y="772" fill="#8FA7B1" font-family="Arial, sans-serif" font-size="28">A multi-agent backend that discovers roles, automates applications, and tracks status with human-safe fallbacks.</text>
+  <defs>
+    <linearGradient id="bg" x1="96" y1="88" x2="1512" y2="812" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A161C"/>
+      <stop offset="1" stop-color="#0D2027"/>
+    </linearGradient>
+  </defs>
+</svg>
