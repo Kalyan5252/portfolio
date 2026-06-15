@@ -1670,19 +1670,42 @@ body {
 
 @media (max-width: 640px) {
   .work-showcase__stage {
-    grid-template-rows: 0.72fr auto 0.72fr 0.72fr;
-    gap: 0.55rem;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto repeat(3, minmax(0, auto));
+    gap: 0.75rem;
     padding: 0.75rem;
+  }
+
+  .work-showcase__title {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    text-align: left;
+  }
+
+  .work-card--top {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .work-card--left {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .work-card--right {
+    grid-column: 1;
+    grid-row: 4;
   }
 
   .work-card--bottom {
     display: block;
-    grid-column: 1 / -1;
-    grid-row: 4;
+    grid-column: 1;
+    grid-row: 5;
   }
 
   .work-glass-card {
-    height: min(18.8vh, 9.6rem);
+    height: min(18.8vh, 10.5rem);
   }
 
   .work-showcase__title h2 {

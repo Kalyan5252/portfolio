@@ -293,7 +293,7 @@ export default function MyWorkShowcase() {
   return (
     <section
       id="my-work"
-      className="work-showcase h-[65svw] overflow-hidden pt-10 pb-28"
+      className="work-showcase min-h-[62rem] overflow-hidden pt-10 pb-28 sm:min-h-[68rem] lg:min-h-0 lg:h-[65svw] xl:h-screen"
     >
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,rgba(66,124,121,0.18),transparent_34%),radial-gradient(circle_at_20%_50%,rgba(68,115,162,0.15),transparent_30%),linear-gradient(180deg,#081118_0%,#050b10_38%,#07141a_100%)]" />
       <div className="absolute top-0 h-10 w-full worksdispersion blur-3xl"></div>
