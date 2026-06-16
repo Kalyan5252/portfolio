@@ -8,11 +8,11 @@ import MyWorkShowcase from './mywork/MyWorkShowcase';
 export default function Home() {
   return (
     <main className="text-white">
-      {/* <Hero /> */}
-      {/* <Skills /> */}
-      {/* <Projects /> */}
+      <Hero />
+      <Skills />
+      <Projects />
       <MyWorkShowcase />
-      {/* <ContactSection /> */}
+      <ContactSection />
     </main>
   );
 }

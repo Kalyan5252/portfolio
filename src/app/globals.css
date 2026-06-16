@@ -114,10 +114,6 @@ body {
   border-radius: 5px;
 }
 
-.skillssection {
-  position: relative;
-}
-
 .skill-orbits {
   position: absolute;
   inset: 0;
@@ -1600,17 +1596,25 @@ body {
   }
 }
 
-@media (max-width: 900px) {
-  .work-archive-frame {
+@media (max-width: 1535px) and (min-width: 641px) {
+  .work-archive-frame,
+  .work-orbit {
     display: none;
   }
 
   .work-showcase__stage {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 1fr auto 1fr;
-    gap: 0.75rem;
-    padding: 1rem;
+    grid-template-areas:
+      'title title'
+      'top bottom'
+      'left right';
+    align-content: center;
+    align-items: stretch;
+    gap: clamp(0.9rem, 1.6vw, 1.35rem);
+    height: auto;
+    min-height: 100%;
+    padding: clamp(1rem, 2vw, 1.8rem);
   }
 
   .work-showcase__title,
@@ -1625,60 +1629,97 @@ body {
   }
 
   .work-showcase__title {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    align-self: center;
+    grid-area: title;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     justify-self: center;
+    align-self: start;
     gap: 0.4rem;
+    text-align: center;
     translate: 0px 0px;
+  }
+
+  .work-showcase__title h2 {
+    font-size: clamp(2.85rem, 5.4vw, 4.9rem);
+    line-height: 0.9;
   }
 
   .work-glass-card {
     width: 100%;
-    height: min(25vh, 13.5rem);
+    height: clamp(12rem, 18vw, 16rem);
+    min-height: 0;
   }
 
   .work-card--top {
-    grid-column: 1 / -1;
-    grid-row: 1;
+    grid-area: top;
     translate: 0px 0px;
   }
 
   .work-card--left {
-    grid-column: 1;
-    grid-row: 3;
+    grid-area: left;
     translate: 0px 0px;
   }
 
   .work-card--right {
-    grid-column: 2;
-    grid-row: 3;
+    grid-area: right;
     translate: 0px 0px;
   }
 
   .work-card--bottom {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    display: none;
+    grid-area: bottom;
+    display: block;
     translate: 0px 0px;
+  }
+
+  .work-card__content,
+  .work-card--left .work-card__content,
+  .work-card--right .work-card__content {
+    padding: clamp(0.78rem, 1.25vw, 1.05rem);
   }
 
   .work-card__content h3 {
     max-width: 10ch;
+    font-size: clamp(1rem, 1.9vw, 1.4rem);
+  }
+
+  .work-card__content p {
+    max-width: 18rem;
+    font-size: clamp(0.68rem, 1.1vw, 0.8rem);
   }
 }
 
 @media (max-width: 640px) {
+  .work-archive-frame,
+  .work-orbit {
+    display: none;
+  }
+
   .work-showcase__stage {
+    display: grid;
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto repeat(3, minmax(0, auto));
     gap: 0.75rem;
     padding: 0.75rem;
   }
 
+  .work-showcase__title,
+  .work-glass-card {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    translate: 0px 0px;
+  }
+
   .work-showcase__title {
     grid-column: 1;
     grid-row: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
     justify-self: start;
     text-align: left;
   }
@@ -1721,6 +1762,11 @@ body {
   }
 
   .work-card__content {
+    padding: 0.72rem;
+  }
+
+  .work-card--left .work-card__content,
+  .work-card--right .work-card__content {
     padding: 0.72rem;
   }
 
