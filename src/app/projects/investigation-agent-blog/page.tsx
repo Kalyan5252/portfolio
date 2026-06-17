@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import CustomCursor from '../../components/CustomCursor';
 import { investigationProject } from '../../constants/projects';
@@ -12,10 +13,40 @@ import {
 } from '@/app/constants/livecontext_dummy';
 import Header from '@/app/components/Header';
 import { LiveContextSection } from '@/app/live-context/LiveContextSection';
+import {
+  buildPageMetadata,
+  buildProjectStructuredData,
+  toJsonLd,
+} from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Graph Investigation AI Case Study',
+  description: investigationProject.summary,
+  path: '/projects/investigation-agent-blog',
+  image: investigationProject.heroImage,
+  type: 'article',
+  keywords: [
+    'graph investigation AI case study',
+    'Neo4j AI portfolio project',
+    'CDR IPDR intelligence platform',
+  ],
+});
 
 export default function InvestigationAgentBlogPage() {
+  const structuredData = buildProjectStructuredData({
+    name: investigationProject.title,
+    description: investigationProject.summary,
+    path: '/projects/investigation-agent-blog',
+    image: investigationProject.heroImage,
+    category: investigationProject.category,
+  });
+
   return (
     <main className="investigation-page min-h-screen font-sans text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(structuredData) }}
+      />
       <div className="investigation-page__background pointer-events-none fixed inset-0 -z-10" />
       <div className="investigation-page__grid pointer-events-none fixed inset-0 -z-10" />
 

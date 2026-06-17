@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import CustomCursor from '../../components/CustomCursor';
 import { carShowcaseProject } from '../../constants/projects';
@@ -12,10 +13,40 @@ import {
   carShowcaseComparisonRows,
   carShowcaseMetrics,
 } from '@/app/constants/car_showcase';
+import {
+  buildPageMetadata,
+  buildProjectStructuredData,
+  toJsonLd,
+} from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: '3D Car Showcase Case Study',
+  description: carShowcaseProject.summary,
+  path: '/projects/3d-car-showcase',
+  image: carShowcaseProject.heroImage,
+  type: 'article',
+  keywords: [
+    '3D car configurator case study',
+    'react three fiber portfolio project',
+    'three.js car showcase',
+  ],
+});
 
 export default function CarShowcaseBlogPage() {
+  const structuredData = buildProjectStructuredData({
+    name: carShowcaseProject.title,
+    description: carShowcaseProject.summary,
+    path: '/projects/3d-car-showcase',
+    image: carShowcaseProject.heroImage,
+    category: carShowcaseProject.category,
+  });
+
   return (
     <main className="investigation-page min-h-screen font-sans text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(structuredData) }}
+      />
       <div className="investigation-page__background pointer-events-none fixed inset-0 -z-10" />
       <div className="investigation-page__grid pointer-events-none fixed inset-0 -z-10" />
 
