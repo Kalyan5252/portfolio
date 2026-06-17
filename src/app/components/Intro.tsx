@@ -7,7 +7,7 @@ const AnimatedText = () => {
   const lineRef = useRef<HTMLDivElement>(null);
   const imRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLParagraphElement>(null);
   const kalyanRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -165,7 +165,7 @@ const AnimatedText = () => {
           ))}
         </h1>
 
-        <h1
+        <p
           ref={titleRef}
           className="text-lg md:text-xl lg:text-2xl pb-40 lg:pb-0"
         >
@@ -177,7 +177,7 @@ const AnimatedText = () => {
               {char === ' ' ? '\u00A0' : char}
             </span>
           ))}
-        </h1>
+        </p>
       </div>
       {/* <Image
         src={'/people/dp.png'}

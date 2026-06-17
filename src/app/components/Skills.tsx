@@ -148,15 +148,16 @@ const Skills = () => {
 
   return (
     <div
+      id="skills"
       ref={sectionRef}
       className="relative z-0 flex min-h-screen w-full flex-col items-center gap-8 px-4 pt-16 pb-12 md:px-6 lg:min-h-[52rem] lg:px-0 lg:pt-20 xl:min-h-[58rem] "
     >
-      <h1
+      <h2
         ref={headRef}
         className="opacity-0 text-center text-4xl font-extrabold uppercase tracking-wide text-white md:text-5xl"
       >
         Proficient in
-      </h1>
+      </h2>
 
       <div
         ref={skillsSectionRef}
